@@ -2,6 +2,12 @@
   {
     "outputFile": "wwwroot/css/TelaInicial.css",
     "inputFile": "wwwroot/css/TelaInicial.scss",
-    "minify": {"enabled": false}
+    "minify": {
+      "enabled": false
+    }
+  },
+  {
+    "outputFile": "wwwroot/css/LayoutDeslogado.css",
+    "inputFile": "wwwroot/css/LayoutDeslogado.scss"
   }
 ]
