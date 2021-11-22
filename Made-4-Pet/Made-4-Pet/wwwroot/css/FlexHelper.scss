@@ -1,8 +1,27 @@
-﻿@mixin flexCenter($direction) {
+﻿@mixin flexCenterRow() {
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: $direction;
+    flex-direction: row;
+}
+
+@mixin flexCenterColumn() {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+@mixin flexCenterNoAlignRow() {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+}
+
+@mixin flexCenterNoAlignColumn() {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
 }
 
 @mixin flexRowPersonalized($justify, $align) {

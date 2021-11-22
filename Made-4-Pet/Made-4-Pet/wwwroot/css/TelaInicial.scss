@@ -1,1 +1,13 @@
 ﻿@import "./FlexHelper.scss";
+
+.container1 {
+    @include flexCenterRow();
+}
+
+.container2-1 {
+    @include flexCenterNoAlignColumn();
+}
+
+.container2-2 {
+    @include flexCenterNoAlignColumn();
+}
