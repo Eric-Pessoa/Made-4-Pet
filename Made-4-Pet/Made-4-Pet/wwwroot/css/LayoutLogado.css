@@ -1,13 +1,11 @@
 ﻿.headerPersonalized {
-  height: 10vh;
-  background-color: #DFE6ED; }
-  .headerPersonalized:first-child {
-    height: 15vh; }
+  height: 9vh;
+  background-color: #EDEDED; }
 
 .btnPink {
   color: #C7627E; }
   .btnPink:hover {
-    color: white; }
+    color: #D073DE; }
 
 .btnPinkPill {
   text-align: center;
@@ -15,8 +13,5 @@
   border-radius: 500px;
   color: white; }
   .btnPinkPill:hover {
-    color: white; }
-
-.ContainerPersonalized {
-  margin: 0 50px;
-  padding: 0 15px; }
+    color: white;
+    background-color: #D073DE; }
