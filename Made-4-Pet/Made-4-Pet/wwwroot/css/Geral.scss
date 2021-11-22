@@ -1,0 +1,26 @@
+﻿$mainPink: #DE9AE8;
+$mediumPink: #D073DE;
+
+$mainGrey: #DFE6ED;
+$lightGrey: #EDEDED;
+$mediumGrey: #9D9D9D;
+
+@mixin btnPink() {
+    color: $mainPink;
+
+    &:hover {
+        color: $mediumPink;
+    }
+}
+
+@mixin btnPinkPill() {
+    text-align: center;
+    background-color: $mainPink;
+    border-radius: 500px;
+    color: white;
+
+    &:hover {
+        color: white;
+        background-color: $mediumPink;
+    }
+}

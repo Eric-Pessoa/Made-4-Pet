@@ -1,3 +1,17 @@
 ﻿.headerPersonalized {
-  height: 5vh;
-  background-color: #DFE6ED; }
+  height: 9vh;
+  background-color: #EDEDED; }
+
+.btnPink {
+  color: #DE9AE8; }
+  .btnPink:hover {
+    color: #D073DE; }
+
+.btnPinkPill {
+  text-align: center;
+  background-color: #DE9AE8;
+  border-radius: 500px;
+  color: white; }
+  .btnPinkPill:hover {
+    color: white;
+    background-color: #D073DE; }
