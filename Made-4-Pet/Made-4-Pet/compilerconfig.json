@@ -9,5 +9,9 @@
   {
     "outputFile": "wwwroot/css/LayoutDeslogado.css",
     "inputFile": "wwwroot/css/LayoutDeslogado.scss"
+  },
+  {
+    "outputFile": "wwwroot/css/FlexHelper.css",
+    "inputFile": "wwwroot/css/FlexHelper.scss"
   }
 ]

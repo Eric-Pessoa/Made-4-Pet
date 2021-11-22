@@ -1,20 +1,21 @@
-﻿$mainGrey: #DFE6ED;
+﻿@import "./FlexHelper.scss";
+
+$mainGrey: #DFE6ED;
 $mainPink: #DE9AE8;
 
 .headerPersonalized {
     height: 10vh;
     background-color: $mainGrey;
-}
-.headerPersonalized:first-child {
-    height: 15vh;
+    &:first-child {
+        height: 15vh;
+    }
 }
 
 .btnPink {
     color: $mainPink;
-}
-
-.btnPink:hover {
-    color: white;
+    &:hover {
+        color: white;
+    }
 }
 
 .btnPinkPill {
@@ -22,10 +23,9 @@ $mainPink: #DE9AE8;
     background-color: $mainPink;
     border-radius: 500px;
     color: white;
-}
-
-.btnPinkPill:hover {
-    color: white;
+    &:hover {
+        color: white;
+    }
 }
 
 .ContainerPersonalized {
