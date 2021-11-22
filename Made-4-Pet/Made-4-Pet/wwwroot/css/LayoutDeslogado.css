@@ -7,7 +7,7 @@
 .btnPink {
   color: #C7627E; }
   .btnPink:hover {
-    color: white; }
+    color: #D073DE; }
 
 .btnPinkPill {
   text-align: center;
@@ -15,7 +15,8 @@
   border-radius: 500px;
   color: white; }
   .btnPinkPill:hover {
-    color: white; }
+    color: white;
+    background-color: #D073DE; }
 
 .ContainerPersonalized {
   margin: 0 50px;

@@ -1,0 +1,14 @@
+﻿@import "./Geral.scss";
+
+.headerPersonalized {
+    height: 9vh;
+    background-color: $lightGrey;
+}
+
+.btnPink {
+    @include btnPink();
+}
+
+.btnPinkPill {
+    @include btnPinkPill();
+}
