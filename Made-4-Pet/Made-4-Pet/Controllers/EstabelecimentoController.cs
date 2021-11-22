@@ -12,5 +12,9 @@ namespace Made_4_Pet.Controllers
         {
             return View();
         }
+        public IActionResult ProcuraPorServico()
+        {
+            return View();
+        }
     }
 }
