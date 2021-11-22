@@ -5,13 +5,13 @@
     height: 15vh; }
 
 .btnPink {
-  color: #DE9AE8; }
+  color: #C7627E; }
   .btnPink:hover {
     color: #D073DE; }
 
 .btnPinkPill {
   text-align: center;
-  background-color: #DE9AE8;
+  background-color: #C7627E;
   border-radius: 500px;
   color: white; }
   .btnPinkPill:hover {
