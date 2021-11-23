@@ -15,6 +15,9 @@ namespace Made_4_Pet.Controllers
         {
             Cliente cliente = new Cliente();
             HttpContext.Session.SetObjectAsJson("UserSession", cliente);
+            IList<string> horarios = new List<string>();
+            //horarios.Add("19h");
+            ViewBag.horarios = horarios;
             return View();
         }
     }

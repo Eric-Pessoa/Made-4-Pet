@@ -1,0 +1,22 @@
+﻿@import "./FlexHelper.scss";
+@import "./Geral.scss";
+
+.flexCenterRow {
+    @include flexCenterRow();
+}
+
+.flexRowPersonalized {
+    @include flexRowPersonalized(space-between, center);
+}
+
+.scheduleParagraph {
+    @include flexCenterColumn();
+    border: $mediumPink 1px solid;
+    background-color: $mainPink;
+    padding: 2%;
+    margin: 0;
+}
+
+.textPink {
+    @include textPink();
+}

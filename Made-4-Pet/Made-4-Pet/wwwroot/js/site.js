@@ -1,4 +1,13 @@
-﻿// Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
+﻿window.onload = function () {
 
-// Write your JavaScript code.
+    //engrenagem
+    var gear = document.querySelector('#gear')
+    gear.addEventListener('mouseenter', () => { gear.src = '../img/icons/gear-focus.png' })
+    gear.addEventListener('mouseout', () => { gear.src = '../img/icons/gear.png' })
+
+    //carrinho
+    var cart = document.querySelector('#cart')
+    cart.addEventListener('mouseenter', () => { cart.src = '../img/icons/cart-focus.png' })
+    cart.addEventListener('mouseout', () => { cart.src = '../img/icons/cart.png'
+    })
+}
