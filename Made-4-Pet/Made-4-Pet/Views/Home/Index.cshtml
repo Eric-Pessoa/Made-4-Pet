@@ -9,8 +9,8 @@
     <div class="container1">
         <div class="container2-1" >
             <p class="h1 text-center h1Form">Do que você precisa hoje?</p>
-            <form class="col-12 form">
-                <input name="nome" class="form-control" id="pesquisa" placeholder="Procurar item por nome"/>
+            <form asp-action="ProcuraPorServico" asp-controller="Estabelecimento" class="col-12 form">
+                <input name="nomeBusca" class="form-control" id="pesquisa" placeholder="Procurar item por nome"/>
                 <button type="submit" class="btn p-0 col-1">
                     <span class="material-icons">
                         search
@@ -18,18 +18,27 @@
                 </button>
             </form>
             <div class="divLink">
-                <a>
-                    <img src="~/img/banhoETosa.png"/>
-                    <p class="h3 text-center">Banho e tosa</p>
-                </a>
-                <a>
-                    <img src="~/img/saude.png"/>
-                    <p class="h3 text-center">Saúde</p>
-                </a>
-                <a>
-                    <img src="~/img/crecheHotel.png"/>
-                    <p class="h3 text-center">Creche e hotel</p>
-                </a>
+                <form asp-controller="Estabelecimento" asp-action="ProcuraPorServico">
+                    <input name="categoria" value="banhoETosa" type="hidden" />
+                    <button type="submit" style="background-color: ghostwhite; border: 0 solid black">
+                        <img src="~/img/banhoETosa.png" />
+                        <p class="h3 text-center">Banho e tosa</p>
+                    </button>
+                </form>
+                <form asp-controller="Estabelecimento" asp-action="ProcuraPorServico">
+                    <input name="categoria" value="saude" type="hidden" />
+                    <button type="submit" style="background-color: ghostwhite; border: 0 solid black">
+                        <img src="~/img/saude.png" />
+                        <p class="h3 text-center">Saúde</p>
+                    </button>
+                </form>
+                <form asp-controller="Estabelecimento" asp-action="ProcuraPorServico">
+                    <input name="categoria" value="crecheEHotel" type="hidden" />
+                    <button type="submit" style="background-color: ghostwhite; border: 0 solid black">
+                        <img src="~/img/crecheHotel.png" />
+                        <p class="h3 text-center">Creche e hotel</p>
+                    </button>
+                </form>
             </div>
         </div>
         <div class="container2-2">
