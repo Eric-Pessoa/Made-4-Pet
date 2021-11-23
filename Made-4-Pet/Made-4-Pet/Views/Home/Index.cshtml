@@ -5,40 +5,35 @@
 <link rel="stylesheet" href="~/css/TelaInicial.css" />
 
 
-<div class="d-flex w-100 h-100">
+<div class="d-flex flex-column w-100 h-100">
     <div class="container1">
-        <div class="d-flex flex-column align-items-center" >
-            <p class="h1 text-center mb-5">Do que você precisa hoje?</p>
-            <form class="d-flex col-12 align-items-start justify-content-center" style="width: 65vw; padding-left: 5vw; padding-right: 5vw;">
-                <input name="nome" class="form-control" id="pesquisa" placeholder="Procurar item por nome" style="border-radius: 10px 0 0 10px;" />
-                <button type="submit" class="btn p-0 col-1" style="border-radius: 0 10px 10px 0; height: 38px; background-color: maroon;">
-                    <span class="d-flex justify-content-center material-icons">
+        <div class="container2-1" >
+            <p class="h1 text-center h1Form">Do que você precisa hoje?</p>
+            <form class="col-12 form">
+                <input name="nome" class="form-control" id="pesquisa" placeholder="Procurar item por nome"/>
+                <button type="submit" class="btn p-0 col-1">
+                    <span class="material-icons">
                         search
                     </span>
                 </button>
             </form>
-            <div class="d-flex justify-content-between flex-row mt-5" style="width: 50vw;">
-                <a class="d-flex justify-content-center align-items-center flex-column">
-                    <img src="~/img/banhoETosa.png" style="height: 15vh; width: 10vw; object-fit: cover;" />
+            <div class="divLink">
+                <a>
+                    <img src="~/img/banhoETosa.png"/>
                     <p class="h3 text-center">Banho e tosa</p>
                 </a>
-                <a class="d-flex justify-content-center align-items-center flex-column">
-                    <img src="~/img/saude.png" style="height: 15vh; width: 10vw; object-fit: cover;" />
+                <a>
+                    <img src="~/img/saude.png"/>
                     <p class="h3 text-center">Saúde</p>
                 </a>
-                <a class="d-flex justify-content-center align-items-center flex-column">
-                    <img src="~/img/crecheHotel.png" style="height: 15vh; width: 10vw; object-fit: cover;" />
+                <a>
+                    <img src="~/img/crecheHotel.png"/>
                     <p class="h3 text-center">Creche e hotel</p>
                 </a>
             </div>
         </div>
-        <div class="d-flex justify-content-center flex-column">
-            <img src="~/img/Dog.png" style="height: 60vh; width: 30vw; object-fit: contain;" />
+        <div class="container2-2">
+            <img src="~/img/Dog.png" class="dogImage" />
         </div>
-    </div>
-    <div>
-        <div></div>
-        <div></div>
-        <div></div>
     </div>
 </div>

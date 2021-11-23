@@ -1,5 +1,6 @@
 ﻿@import "./FlexHelper.scss";
 
+
 .container1 {
     @include flexCenterRow();
     height: 60vh;
@@ -7,9 +8,59 @@
 }
 
 .container2-1 {
-    @include flexCenterNoAlignColumn();
+    @include flexCenterColumn();
 }
 
 .container2-2 {
     @include flexCenterNoAlignColumn();
+}
+
+.h1Form {
+    margin: 0 0 3rem 0;
+    color: #dda0dd;
+}
+
+.form {
+    display: flex;
+    align-items: start;
+    justify-content: center;
+    width: 65vw;
+    padding: 0 5vw;
+    input {
+        border-radius: 10px 0 0 10px;
+    }
+    button {
+        border-radius: 0 10px 10px 0;
+        height: 38px;
+        background-color: #dda0dd;
+        span {
+            display: flex;
+            justify-content: center;
+        }
+    }
+}
+
+.divLink {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    margin: 3rem 0 0 0;
+    width: 50vw;
+    a {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+    img {
+        height: 15vh;
+        width: 10vw;
+        object-fit: cover;
+    }
+}
+
+.dogImage {
+    height: 60vh;
+    width: 30vw;
+    object-fit: contain;
 }
