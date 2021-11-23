@@ -3,17 +3,25 @@
 <div class="form-row d-flex flex-row justify-content-between">
     <div class="col-6">
         <label asp-for="Nome"></label>
-
-        <div class="d-flex flex-column">
+        <div>
             <input asp-for="Nome" class="form-control mb-2">
             <span asp-validation-for="Nome" class="text-danger mb-3" style="text-align: center"></span>
         </div>
     </div>
     <div class="col-6">
         <label asp-for="Email"></label>
-        <div class="d-flex flex-column">
+        <div>
             <input asp-for="Email" class="form-control mb-2">
             <span asp-validation-for="Email" class="text-danger mb-3" style="text-align: center"></span>
+        </div>
+    </div>
+</div>
+<div class="form-row d-flex flex-row justify-content-between">
+    <div class="col-12">
+        <label asp-for="Foto"></label>
+        <div>
+            <input asp-for="Foto" class="form-control mb-2" />
+            <span asp-validation-for="Foto" class="text-danger mb-3" style="text-align: center"></span>
         </div>
     </div>
 </div>

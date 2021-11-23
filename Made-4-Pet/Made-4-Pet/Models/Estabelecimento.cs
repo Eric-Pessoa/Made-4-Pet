@@ -39,6 +39,9 @@ namespace Made_4_Pet.Models
         [MaxLength(35, ErrorMessage = "O e-mail não pode ultrapassar 35 caracteres.")]
         public string Email { get; set; }
 
+        [Display(Name = "URL da foto do estabelecimento")]
+        public string Foto { get; set; }
+
         public Categoria Categoria { get; set; }
     }
 
