@@ -81,11 +81,11 @@ namespace Made_4_Pet.Controllers
                     {
                         case "banhoETosa":
                             var filter = estabelecimentos.FindAll(i => i.Nome.ToLower().Contains(categoria.ToLower()));
-                            return;
+                             return View();
                         case "saude":
-                            return;
+                            return View();
                         case "crecheEHotel":
-                            return;
+                            return View();
                     }
                 }
             }

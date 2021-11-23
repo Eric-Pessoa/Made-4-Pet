@@ -1,7 +1,7 @@
 ﻿@model Estabelecimento
 
-<div class="form-row d-flex flex-row justify-content-around">
-    <div style="width: 47%;">
+<div class="form-row d-flex flex-row justify-content-between">
+    <div style="width: 47.5%;">
         <label asp-for="Nome"></label>
 
         <div class="d-flex flex-column">
@@ -9,37 +9,44 @@
             <span asp-validation-for="Nome" class="text-danger mb-3" style="text-align: center"></span>
         </div>
     </div>
-    <div style="width: 45%;">
-        <label asp-for="CNPJ"></label>
+    <div style="width: 47.5%;">
+        <label asp-for="Email"></label>
         <div class="d-flex flex-column">
-            <input asp-for="CNPJ" class="form-control mb-2">
-            <span asp-validation-for="CNPJ" class="text-danger mb-3" style="text-align: center"></span>
+            <input asp-for="Email" class="form-control mb-2">
+            <span asp-validation-for="Email" class="text-danger mb-3" style="text-align: center"></span>
         </div>
     </div>
 </div>
-<div class="form-row d-flex flex-row justify-content-around">
-    <div style="width: 44%;">
+<div class="form-row d-flex flex-row justify-content-between">
+    <div style="width: 31%;">
         <label asp-for="Telefone"></label>
         <div class="d-flex flex-column">
             <input asp-for="Telefone" class="form-control mb-2">
             <span asp-validation-for="Telefone" class="text-danger mb-3" style="text-align: center"></span>
         </div>
     </div>
-    <div style="width: 50%;">
-        <div class="mx-auto mb-2" style="width: 96%;">
-            <label asp-for="Email"></label>
-            <input asp-for="Email" class="form-control mb-2">
-            <span asp-validation-for="Email" class="text-danger mb-2" style="text-align: center"></span>
+    <div style="width: 31%;">
+        <label asp-for="Categoria"></label>
+        <div class="d-flex flex-column">
+            <input asp-for="Categoria" class="form-control mb-2">
+            <span asp-validation-for="Categoria" class="text-danger mb-3" style="text-align: center"></span>
+        </div>
+    </div>
+    <div style="width: 33%;">
+        <div class="mx-auto mb-2">
+            <label asp-for="CNPJ"></label>
+            <input asp-for="CNPJ" class="form-control mb-2">
+            <span asp-validation-for="CNPJ" class="text-danger mb-2" style="text-align: center"></span>
         </div>
     </div>
 </div>
-<div class="form-row d-flex flex-row justify-content-around">
+<div class="form-row d-flex flex-row justify-content-between">
     <div style="width: 35%;">
         <label asp-for="Endereco.Logradouro"></label>
         <input asp-for="Endereco.Logradouro" class="form-control mb-2">
         <span asp-validation-for="Endereco.Logradouro" class="text-danger mb-2" style="text-align: center"></span>
     </div>
-    <div style="width: 20%;">
+    <div style="width: 25%;">
         <label asp-for="Endereco.Numero"></label>
         <input asp-for="Endereco.Numero" class="form-control mb-2">
         <span asp-validation-for="Endereco.Numero" class="text-danger mb-2" style="text-align: center"></span>
@@ -50,18 +57,18 @@
         <span asp-validation-for="Endereco.CEP" class="text-danger mb-2" style="text-align: center"></span>
     </div>
 </div>
-<div class="form-row d-flex flex-row justify-content-around">
-    <div style="width: 30%;">
+<div class="form-row d-flex flex-row justify-content-between">
+    <div style="width: 33%;">
         <label asp-for="Endereco.Bairro"></label>
         <input asp-for="Endereco.Bairro" class="form-control mb-2">
         <span asp-validation-for="Endereco.Bairro" class="text-danger mb-2" style="text-align: center"></span>
     </div>
-    <div style="width: 30%;">
+    <div style="width: 31%;">
         <label asp-for="Endereco.Cidade"></label>
         <input asp-for="Endereco.Cidade" class="form-control mb-2">
         <span asp-validation-for="Endereco.Cidade" class="text-danger mb-2" style="text-align: center"></span>
     </div>
-    <div style="width: 30%;">
+    <div style="width: 31%;">
         <label asp-for="Endereco.Complemento"></label>
         <input asp-for="Endereco.Complemento" class="form-control mb-2">
         <span asp-validation-for="Endereco.Complemento" class="text-danger mb-2" style="text-align: center"></span>
