@@ -1,6 +1,14 @@
 ﻿@import "./FlexHelper.scss";
 @import "./Geral.scss";
 
+.flexCenterRow {
+    @include flexCenterRow();
+}
+
+.flexCenterColumn {
+    @include flexCenterColumn();
+}
+
 .headerPersonalized {
     height: 10vh;
     background-color: $mainGrey;
@@ -11,6 +19,11 @@
 
 .btnPink {
     @include btnPink();
+
+    &:focus {
+        border: none;
+        outline: none;
+    }
 }
 
 .btnPinkPill {

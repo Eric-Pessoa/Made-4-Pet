@@ -1,44 +1,42 @@
-﻿@model Estabelecimento
+﻿@model Cliente
 
 <div class="form-row d-flex flex-row justify-content-between">
     <div class="col-6">
         <label asp-for="Nome"></label>
-
         <div class="d-flex flex-column">
             <input asp-for="Nome" class="form-control mb-2">
-            <span asp-validation-for="Nome" class="text-danger mb-3" style="text-align: center"></span>
+            <span asp-validation-for="Nome" class="text-danger mb-2" style="text-align: center"></span>
         </div>
     </div>
-    <div class="col-6">
-        <label asp-for="Email"></label>
+    <div class="col-3">
+        <label asp-for="CPF"></label>
         <div class="d-flex flex-column">
-            <input asp-for="Email" class="form-control mb-2">
-            <span asp-validation-for="Email" class="text-danger mb-3" style="text-align: center"></span>
+            <input asp-for="CPF" class="form-control mb-2">
+            <span asp-validation-for="CPF" class="text-danger mb-2" style="text-align: center"></span>
         </div>
     </div>
-</div>
-<div class="form-row d-flex flex-row justify-content-between">
-    <div class="col-4">
+    <div class="col-3">
         <label asp-for="Telefone"></label>
         <div class="d-flex flex-column">
             <input asp-for="Telefone" class="form-control mb-2">
-            <span asp-validation-for="Telefone" class="text-danger mb-3" style="text-align: center"></span>
+            <span asp-validation-for="Telefone" class="text-danger mb-2" style="text-align: center"></span>
         </div>
     </div>
-    <div class="col-4">
-        <label asp-for="Categoria"></label>
+</div>
+
+<div class="form-row d-flex flex-row justify-content-between">
+    <div class="col-7">
+        <label asp-for="Email"></label>
         <div class="d-flex flex-column">
-            <select asp-items="@Html.GetEnumSelectList<Categoria>()" asp-for="Categoria" class="form-control mb-2">
-                <option disabled>-- Selecione --</option>
-            </select>
-            <span asp-validation-for="Categoria" class="text-danger mb-3" style="text-align: center"></span>
+            <input asp-for="Email" class="form-control mb-2" />
+            <span asp-validation-for="Email" class="text-danger mb-2" style="text-align: center"></span>
         </div>
     </div>
-    <div class="col-4">
-        <div class="mx-auto mb-2">
-            <label asp-for="CNPJ"></label>
-            <input asp-for="CNPJ" class="form-control mb-2">
-            <span asp-validation-for="CNPJ" class="text-danger mb-2" style="text-align: center"></span>
+    <div class="col-5">
+        <label asp-for="Senha"></label>
+        <div class="d-flex flex-column">
+            <input asp-for="Senha" class="form-control mb-2" />
+            <span asp-validation-for="Senha" class="text-danger mb-2" style="text-align: center"></span>
         </div>
     </div>
 </div>

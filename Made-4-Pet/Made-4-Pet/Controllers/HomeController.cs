@@ -52,7 +52,7 @@ namespace Made_4_Pet.Controllers
                 var gerente = g.Value.ToObject<Cliente>();
                 if (gerente.Email == email && gerente.Senha == senha)
                 {
-                    return RedirectToAction("Index", "Estabelecimento");
+                    return RedirectToAction("Index", "home");
                 }
             }
             return View();
@@ -71,7 +71,7 @@ namespace Made_4_Pet.Controllers
             cliente.ClienteId = response.Result.name;
             SetResponse setResponse = client.Set("cliente/" + cliente.ClienteId, cliente);
             TempData["Sucesso"] = "Cadastrado com sucesso";
-            return RedirectToAction("Index", "Estabelecimento");
+            return RedirectToAction("Index", "home");
         }
 
         public IActionResult Privacy()

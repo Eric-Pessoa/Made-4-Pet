@@ -39,6 +39,7 @@ namespace Made_4_Pet.Controllers
         {
             return View();
         }
+
         public IActionResult CadastroPrestador()
         {
             return View();
@@ -52,7 +53,7 @@ namespace Made_4_Pet.Controllers
             estabelecimento.EstabelecimentoId = response.Result.name;
             SetResponse setResponse = client.Set("estabelecimento/" + estabelecimento.EstabelecimentoId, estabelecimento);
             TempData["Sucesso"] = "Cadastrado com sucesso";
-            return RedirectToAction("Index", "Estabelecimento");
+            return RedirectToAction("Home", "Estabelecimento");
         }
         [HttpPost]
         public IActionResult ProcuraPorServico(string nomeBusca = null, string categoria = null)

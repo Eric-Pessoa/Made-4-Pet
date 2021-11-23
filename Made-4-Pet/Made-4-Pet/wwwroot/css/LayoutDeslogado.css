@@ -1,4 +1,16 @@
-﻿.headerPersonalized {
+﻿.flexCenterRow {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row; }
+
+.flexCenterColumn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column; }
+
+.headerPersonalized {
   height: 10vh;
   background-color: #cbe0e9; }
   .headerPersonalized:first-child {
@@ -8,6 +20,9 @@
   color: #dda0dd; }
   .btnPink:hover {
     color: #D883D8; }
+  .btnPink:focus {
+    border: none;
+    outline: none; }
 
 .btnPinkPill {
   text-align: center;

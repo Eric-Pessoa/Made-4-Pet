@@ -15,7 +15,6 @@ namespace Made_4_Pet.Models
         [Required(ErrorMessage = "O nome é obrigatório.")]
         [MinLength(6, ErrorMessage = "O nome deve ter 6 caracteres ou mais.")]
         [MaxLength(50, ErrorMessage = "O nome deve ter 50 caracteres ou menos.")]
-        [Display(Name = "Qual é o seu nome?")]
         public string Nome { get; set; }
 
         [Display(Name = "E-mail")]
