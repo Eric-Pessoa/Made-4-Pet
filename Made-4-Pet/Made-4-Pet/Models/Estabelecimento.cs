@@ -10,7 +10,7 @@ namespace Made_4_Pet.Models
     [Table("Tb_Estabelecimento")]
     public class Estabelecimento
     {
-        public int EstabelecimentoId { get; set; }
+        public string EstabelecimentoId { get; set; }
 
         [Display(Name = "Nome do estabelecimento")]
         [Required(ErrorMessage = "Informe o nome do estabelecimento.")]
