@@ -1,17 +1,38 @@
+﻿.flexCenterRow {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row; }
+
+.flexCenterColumn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column; }
+
 .headerPersonalized {
   height: 9vh;
   background-color: #EDEDED; }
 
 .btnPink {
-  color: #C7627E; }
+  color: #D66584; }
   .btnPink:hover {
-    color: #D073DE; }
+    color: #C7627E; }
 
 .btnPinkPill {
   text-align: center;
-  background-color: #C7627E;
+  background-color: #D66584;
   border-radius: 500px;
   color: white; }
   .btnPinkPill:hover {
     color: white;
-    background-color: #D073DE; }
+    background-color: #C7627E; }
+
+.btnSearch {
+  background-color: #D66584;
+  width: 10%;
+  height: calc(1.5em + .75rem + 2px);
+  align-items: start;
+  margin-left: 1%; }
+  .btnSearch:hover {
+    background-color: #C7627E; }

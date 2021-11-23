@@ -1,6 +1,6 @@
-$mainPink: #C7627E;
+$mediumPink: #C7627E;
 $lightPink: #EFA6B4;
-$mediumPink: #D073DE;
+$mainPink: #D66584;
 $pink: #D66584;
 
 $mainGrey: #DFE6ED;
@@ -25,4 +25,20 @@ $mediumGrey: #9D9D9D;
         color: white;
         background-color: $mediumPink;
     }
+}
+
+@mixin btnSearch() {
+    background-color: $mainPink;
+    width: 10%;
+    height: calc(1.5em + .75rem + 2px);
+    align-items: start;
+    margin-left: 1%;
+
+    &:hover {
+        background-color: $mediumPink;
+    }
+}
+
+@mixin textPink() {
+    color: $mainPink;
 }

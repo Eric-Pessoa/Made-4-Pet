@@ -17,5 +17,9 @@
   {
     "outputFile": "wwwroot/css/LayoutLogado.css",
     "inputFile": "wwwroot/css/LayoutLogado.scss"
+  },
+  {
+    "outputFile": "wwwroot/css/IndexEstab.css",
+    "inputFile": "wwwroot/css/IndexEstab.scss"
   }
 ]

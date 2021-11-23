@@ -39,12 +39,5 @@ namespace Made_4_Pet.Models
         [MaxLength(35, ErrorMessage = "O e-mail não pode ultrapassar 35 caracteres.")]
         public string Email { get; set; }
 
-        //[Display(Name = "Senha")]
-        //[Required(ErrorMessage = "Informe a senha.")]
-        //[MinLength(6, ErrorMessage = "A senha deve ter, no mínimo, 6 caracteres.")]
-        //[MaxLength(25)]
-        //[DataType(DataType.Password)]
-        //public string Senha { get; set; }
-
     }
 }

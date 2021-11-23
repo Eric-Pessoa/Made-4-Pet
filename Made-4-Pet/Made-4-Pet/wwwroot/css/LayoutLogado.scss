@@ -1,4 +1,13 @@
 ﻿@import "./Geral.scss";
+@import "./FlexHelper.scss";
+
+.flexCenterRow {
+    @include flexCenterRow();
+}
+
+.flexCenterColumn {
+    @include flexCenterColumn();
+}
 
 .headerPersonalized {
     height: 9vh;
@@ -11,4 +20,8 @@
 
 .btnPinkPill {
     @include btnPinkPill();
+}
+
+.btnSearch {
+    @include btnSearch();
 }
