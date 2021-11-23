@@ -2,6 +2,8 @@
 
 .container1 {
     @include flexCenterRow();
+    height: 60vh;
+    margin: 3rem 0 0 0;
 }
 
 .container2-1 {
