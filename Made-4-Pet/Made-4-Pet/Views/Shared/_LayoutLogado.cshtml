@@ -1,8 +1,7 @@
 ﻿<!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    @*<meta charset="UTF-8" />*@
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Made4Pet</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -43,12 +42,27 @@
     </div>
 
     
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            Made4Pet&copy; 2021
-        </div>
-        <div class="container">
-            
+    <footer class="border-top footer text-muted flexCenterRow">
+        <div class="d-flex col-12 m-auto">
+            <div class="flexCenterRow col-4">
+                <a class="flexCenterRow" href="#">
+                    <img src="~/img/icons/instagram.png" width="18" />
+                    <h6 class="mx-2 mb-0">instagram</h6>
+                </a>
+                <a class="flexCenterRow" href="#">
+                    <img src="~/img/icons/facebook.png" width="18" />
+                    <h6 class="mx-2 mb-0">facebook</h6>
+                </a>
+            </div>
+            <div class="flexCenterRow col-4">
+                <img src="~/img/written-logo.png" width="100" />&copy; 2021
+            </div>
+            <div class="col-4 flexCenterColumn">
+                <a class="flexCenterColumn linkWithoutDecoration" href="#">
+                    <h6 class="textPink mb-0">Seja um prestador!</h6>
+                    <img src="~/img/Casinha.png" width="50" />
+                </a>
+            </div>
         </div>
     </footer>
     

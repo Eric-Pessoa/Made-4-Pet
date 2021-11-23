@@ -1,11 +1,11 @@
-$mediumPink: #C7627E;
-$lightPink: #EFA6B4;
-$mainPink: #D66584;
+$mediumPink: #D883D8;
+$lightPink: #E7BEE7;
+$mainPink: #dda0dd;
 $pink: #D66584;
 
-$mainGrey: #DFE6ED;
-$lightGrey: #EDEDED;
-$mediumGrey: #9D9D9D;
+$mainGrey: #cbe0e9;
+$lightGrey: #DCE5EA;
+$mediumGrey: #B9CCD5;
 
 @mixin btnPink() {
     color: $mainPink;
@@ -41,4 +41,10 @@ $mediumGrey: #9D9D9D;
 
 @mixin textPink() {
     color: $mainPink;
+}
+
+@mixin linkWithoutDecoration() {
+    &:hover {
+        text-decoration-color: $mainPink;
+    }
 }
