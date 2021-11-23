@@ -15,10 +15,10 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  border: #C7627E 1px solid;
-  background-color: #D66584;
+  border: #D883D8 1px solid;
+  background-color: #dda0dd;
   padding: 2%;
   margin: 0; }
 
 .textPink {
-  color: #D66584; }
+  color: #dda0dd; }
