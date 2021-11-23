@@ -9,9 +9,51 @@
 .container2-1 {
   display: flex;
   justify-content: center;
+  align-items: center;
   flex-direction: column; }
 
 .container2-2 {
   display: flex;
   justify-content: center;
   flex-direction: column; }
+
+.h1Form {
+  margin: 0 0 3rem 0;
+  color: #dda0dd; }
+
+.form {
+  display: flex;
+  align-items: start;
+  justify-content: center;
+  width: 65vw;
+  padding: 0 5vw; }
+  .form input {
+    border-radius: 10px 0 0 10px; }
+  .form button {
+    border-radius: 0 10px 10px 0;
+    height: 38px;
+    background-color: #dda0dd; }
+    .form button span {
+      display: flex;
+      justify-content: center; }
+
+.divLink {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  margin: 3rem 0 0 0;
+  width: 50vw; }
+  .divLink a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column; }
+  .divLink img {
+    height: 15vh;
+    width: 10vw;
+    object-fit: cover; }
+
+.dogImage {
+  height: 60vh;
+  width: 30vw;
+  object-fit: contain; }
