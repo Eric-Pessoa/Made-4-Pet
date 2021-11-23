@@ -17,5 +17,9 @@ namespace Made_4_Pet.Controllers
             HttpContext.Session.SetObjectAsJson("UserSession", cliente);
             return View();
         }
+        public IActionResult ProcuraPorServico()
+        {
+            return View();
+        }
     }
 }
