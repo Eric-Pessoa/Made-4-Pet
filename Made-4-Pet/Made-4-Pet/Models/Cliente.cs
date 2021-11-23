@@ -10,7 +10,7 @@ namespace Made_4_Pet.Models
     [Table("Tb_Cliente")]
     public class Cliente
     {
-        public int ClienteId { get; set; }
+        public string ClienteId { get; set; }
 
         [Required(ErrorMessage = "O nome é obrigatório.")]
         [MinLength(6, ErrorMessage = "O nome deve ter 6 caracteres ou mais.")]
