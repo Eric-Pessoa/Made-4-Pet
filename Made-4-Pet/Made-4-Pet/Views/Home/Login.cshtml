@@ -1,0 +1,23 @@
+﻿@model Cliente
+
+<div class="page-content">
+    <div>
+        <div class="d-flex justify-content-center right-content">
+            <div class="text-center" style="background-color: #fffa; box-shadow: 6px 6px 10px #333; width: 60%; margin: 5% 0; border-radius: 15px; border: 1px #dda0dd solid; padding: 2%;">
+                <feedback texto="@TempData[" Erro"]" is-error="true"></feedback>
+                <h2 style="color: #555; margin-bottom: 2%">Login</h2>
+                <form asp-action="Login" style="padding-left: 15%; padding-right: 15% ">
+                    <label for="id-email">E-mail</label>
+                    <input id="id-email" asp-for="Email" name="email" class="form-control" />
+
+                    <label for="id-senha">Senha</label>
+                    <input id="id-senha" asp-for="Senha" name="senha" class="form-control" />
+
+                    <input type="submit" value="Entrar" class="btn btn-info" style="margin-top: 5%; margin-bottom: 5%;" />
+                </form>
+                <a asp-action="Login">Não possui conta? Cadastre-se clicando aqui!</a>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,27 @@
+﻿@model Estabelecimento
+@{
+    ViewData["Title"] = "Cadastro de restaurante";
+}
+
+
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Wendy+One&display=swap" rel="stylesheet">
+
+<link href="~/css/form-card.css" rel="stylesheet" />
+
+<div class="page-content">
+    <div class="right-content" style="display: flex; flex-direction: column; justify-content: center;">
+        <Feedback Texto="@TempData["Erro"]" is-error="true"></Feedback>
+        <h1 style="display: flex; justify-content: center;" class="my-5">Cadastro de cliente</h1>
+        <div class="card cardStyle mx-auto" style="width: 70%; box-shadow: 6px 6px 10px #333;">
+            <form asp-action="Cadastro">
+                <partial name="_FormCreateUpdateEstabelecimento" />
+
+                <div class="form-row formRowStyleButton">
+                    <a asp-action="index" asp-controller="home" class="btn btn-danger px-5">Cancelar</a>
+                    <input type="submit" value="Próxima etapa" class="btn btn-info ml-3 px-5" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
