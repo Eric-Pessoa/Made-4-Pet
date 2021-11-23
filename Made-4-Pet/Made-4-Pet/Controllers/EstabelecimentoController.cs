@@ -39,7 +39,21 @@ namespace Made_4_Pet.Controllers
         {
             return View();
         }
+        public IActionResult CadastroPrestador()
+        {
+            return View();
+        }
 
+        [HttpPost]
+        public IActionResult CadastroPrestador(Estabelecimento estabelecimento)
+        {
+            client = new FireSharp.FirebaseClient(config);
+            PushResponse response = client.Push("estabelecimento/", estabelecimento);
+            estabelecimento.EstabelecimentoId = response.Result.name;
+            SetResponse setResponse = client.Set("estabelecimento/" + estabelecimento.EstabelecimentoId, estabelecimento);
+            TempData["Sucesso"] = "Cadastrado com sucesso";
+            return RedirectToAction("Index", "Estabelecimento");
+        }
         [HttpPost]
         public IActionResult ProcuraPorServico(string nomeBusca = null, string categoria = null)
         {

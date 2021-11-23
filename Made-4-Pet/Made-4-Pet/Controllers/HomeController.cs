@@ -71,7 +71,7 @@ namespace Made_4_Pet.Controllers
             cliente.ClienteId = response.Result.name;
             SetResponse setResponse = client.Set("cliente/" + cliente.ClienteId, cliente);
             TempData["Sucesso"] = "Cadastrado com sucesso";
-            return RedirectToAction("Cadastro");
+            return RedirectToAction("Index", "Estabelecimento");
         }
 
         public IActionResult Privacy()

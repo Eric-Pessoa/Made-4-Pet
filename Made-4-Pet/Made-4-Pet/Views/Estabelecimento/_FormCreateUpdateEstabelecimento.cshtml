@@ -1,7 +1,7 @@
-﻿@model Cliente
+﻿@model Estabelecimento
 
 <div class="form-row d-flex flex-row justify-content-around">
-    <div style="width: 45%;">
+    <div style="width: 47%;">
         <label asp-for="Nome"></label>
 
         <div class="d-flex flex-column">
@@ -10,19 +10,29 @@
         </div>
     </div>
     <div style="width: 45%;">
-        <label asp-for="CPF"></label>
+        <label asp-for="CNPJ"></label>
         <div class="d-flex flex-column">
-            <input asp-for="CPF" class="form-control mb-2">
-            <span asp-validation-for="CPF" class="text-danger mb-3" style="text-align: center"></span>
+            <input asp-for="CNPJ" class="form-control mb-2">
+            <span asp-validation-for="CNPJ" class="text-danger mb-3" style="text-align: center"></span>
         </div>
     </div>
 </div>
+<div class="form-row d-flex flex-row justify-content-around">
+    <div style="width: 44%;">
         <label asp-for="Telefone"></label>
         <div class="d-flex flex-column">
             <input asp-for="Telefone" class="form-control mb-2">
             <span asp-validation-for="Telefone" class="text-danger mb-3" style="text-align: center"></span>
         </div>
-
+    </div>
+    <div style="width: 50%;">
+        <div class="mx-auto mb-2" style="width: 96%;">
+            <label asp-for="Email"></label>
+            <input asp-for="Email" class="form-control mb-2">
+            <span asp-validation-for="Email" class="text-danger mb-2" style="text-align: center"></span>
+        </div>
+    </div>
+</div>
 <div class="form-row d-flex flex-row justify-content-around">
     <div style="width: 35%;">
         <label asp-for="Endereco.Logradouro"></label>
@@ -55,22 +65,5 @@
         <label asp-for="Endereco.Complemento"></label>
         <input asp-for="Endereco.Complemento" class="form-control mb-2">
         <span asp-validation-for="Endereco.Complemento" class="text-danger mb-2" style="text-align: center"></span>
-    </div>
-</div>
-
-<div class="form-row d-flex flex-row justify-content-around">
-    <div style="width: 47%;">
-        <div class="mx-auto mb-2" style="width: 96%;">
-            <label asp-for="Email"></label>
-            <input asp-for="Email" class="form-control mb-2">
-            <span asp-validation-for="Email" class="text-danger mb-2" style="text-align: center"></span>
-        </div>
-    </div>
-    <div style="width: 47%;">
-        <div class="mx-auto mb-2" style="width: 96%;">
-            <label asp-for="Senha"></label>
-            <input asp-for="Senha" class="form-control mb-2">
-            <span asp-validation-for="Senha" class="text-danger mb-2" style="text-align: center"></span>
-        </div>
     </div>
 </div>
