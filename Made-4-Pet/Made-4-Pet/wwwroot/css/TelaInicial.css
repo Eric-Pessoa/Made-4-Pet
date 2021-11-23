@@ -2,7 +2,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: row; }
+  flex-direction: row;
+  height: 60vh;
+  margin: 3rem 0 0 0; }
 
 .container2-1 {
   display: flex;
