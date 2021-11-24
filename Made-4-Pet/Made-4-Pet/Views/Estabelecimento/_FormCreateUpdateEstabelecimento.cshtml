@@ -26,27 +26,46 @@
     </div>
 </div>
 <div class="form-row d-flex flex-row justify-content-between">
-    <div class="col-4">
+    <div class="col-6">
         <label asp-for="Telefone"></label>
         <div class="d-flex flex-column">
             <input asp-for="Telefone" class="form-control mb-2">
             <span asp-validation-for="Telefone" class="text-danger mb-3" style="text-align: center"></span>
         </div>
     </div>
-    <div class="col-4">
-        <label asp-for="Categoria"></label>
-        <div class="d-flex flex-column">
-            <select asp-items="@Html.GetEnumSelectList<Categoria>()" asp-for="Categoria" class="form-control mb-2">
-                <option disabled>-- Selecione --</option>
-            </select>
-            <span asp-validation-for="Categoria" class="text-danger mb-3" style="text-align: center"></span>
-        </div>
-    </div>
-    <div class="col-4">
+    @*<div class="col-4">
+            <label asp-for="Categorias"></label>
+            <div class="d-flex flex-column">
+                @foreach (var c in ViewBag.categorias)
+                {
+                    <label>@c</label>
+                    <input name="categoria" type="checkbox" value="@c" />
+                }
+                <input asp-for="Categorias" class="form-control mb-2" />
+                <span asp-validation-for="Categorias" class="text-danger mb-3" style="text-align: center"></span>
+            </div>
+        </div>*@
+    <div class="col-6">
         <div class="mx-auto mb-2">
             <label asp-for="CNPJ"></label>
             <input asp-for="CNPJ" class="form-control mb-2">
             <span asp-validation-for="CNPJ" class="text-danger mb-2" style="text-align: center"></span>
+        </div>
+    </div>
+</div>
+<div class="form-row d-flex flex-row justify-content-between">
+    <div class="col-12">
+        <p>Categorias</p>
+        <div class="d-flex justify-content-between">
+            @foreach (var c in ViewBag.categorias)
+            {
+                <div>
+                    <input name="categorias" type="checkbox" value="@c" />
+                    <label>@c</label>
+                </div>
+            }
+            @*<input asp-for="Categorias" class="form-control mb-2" />*@
+            <span asp-validation-for="Categorias" class="text-danger mb-3" style="text-align: center"></span>
         </div>
     </div>
 </div>

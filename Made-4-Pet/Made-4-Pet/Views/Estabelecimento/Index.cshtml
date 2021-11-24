@@ -1,4 +1,6 @@
-﻿@using Microsoft.AspNetCore.Http
+﻿@model Estabelecimento
+
+@using Microsoft.AspNetCore.Http
 @inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
 
 <link href="~/css/IndexEstab.css" rel="stylesheet" />
@@ -11,6 +13,7 @@
 <div class="h-100 w-100 flexCenterColumn">
     <div class="divSchedule flexRowPersonalized col-10 h-50">
         <img src="~/img/estabs/villa-pet.png" class="col-5 imgEstab" />
+        @*<img src="@Model.Foto" class="col-5 imgEstab" />*@
         <div class="col-5 flexCenterRow flex-wrap">
             @if (ViewBag.horarios.Count == 0)
             {

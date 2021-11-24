@@ -42,12 +42,8 @@ namespace Made_4_Pet.Models
         [Display(Name = "URL da foto do estabelecimento")]
         public string Foto { get; set; }
 
-        public Categoria Categoria { get; set; }
+        public string[] Categorias { get; set; }
+
     }
 
-
-    public enum Categoria
-    {
-        Creche, BanhoETosa, Hotel, Parque, Comércio, Veterinaria, Hospital
-    }
 }
