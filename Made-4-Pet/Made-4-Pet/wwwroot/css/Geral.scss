@@ -52,3 +52,13 @@ $mediumGrey: #B9CCD5;
 .footer {
     background-color: $lightGrey;
 }
+
+@media screen and (max-width: 1700px) {
+    .divCategoria {
+        flex: 0 0 33.333333%;
+        max-width: 33.333333%;
+    }
+    .f-wrap {
+        flex-wrap: wrap;
+    }
+}

@@ -76,11 +76,13 @@ namespace Made_4_Pet.Controllers
                     PushResponse response = client.Push("cliente/", cliente);
                     cliente.ClienteId = response.Result.name;
                     SetResponse setResponse = client.Set("cliente/" + cliente.ClienteId, cliente);
+                    HttpContext.Session.SetObjectAsJson("UserSession", cliente);
                     TempData["Sucesso"] = "Cadastrado com sucesso";
                     return RedirectToAction("Index", "home");
                 }
                 catch (Exception)
                 {
+                    TempData["Erro"] = "Ocorreu um erro ao realizar o cadastro... tente novamente mais tarde!";
                     return View();
                 }
             }

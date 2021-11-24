@@ -44,30 +44,32 @@
 <div class="form-row d-flex flex-row justify-content-between">
     <div class="col-12 mb-2">
         <label>Serviços oferecidos</label>
-        <div class="d-flex justify-content-between">
-            @foreach (var c in ViewBag.categorias)
-            {
-                <div>
-                    <input name="categorias" type="checkbox" value="@c" id="@c" />
-                    <label for="@c">@c</label>
-                </div>
-            }
-            <span asp-validation-for="Categorias" class="text-danger mb-3" style="text-align: center"></span>
+        <div class="flexCenterColumn col-12">
+            <div class="d-flex justify-content-between f-wrap">
+                @foreach (var c in ViewBag.categorias)
+                {
+                    <div class="divCategoria">
+                        <input name="categorias" type="checkbox" value="@c" id="@c" />
+                        <label for="@c">@c</label>
+                    </div>
+                }
+                <span asp-validation-for="Categorias" class="text-danger mb-3" style="text-align: center"></span>
+            </div>
         </div>
     </div>
 </div>
-<div class="form-row d-flex flex-row justify-content-between mb-3">
+<div class="flexCenterRow justify-content-between mb-3">
     <div class="col-6 horaAbertura" style="display: none">
         <label asp-for="HoraAbertura"></label>
         <div class="d-flex justify-content-between">
-            <input asp-for="HoraAbertura" class="form-control" />
+            <input asp-for="HoraAbertura" class="form-control ml-3" />
             <span asp-validation-for="HoraAbertura" class="text-danger mb-3" style="text-align: center"></span>
         </div>
     </div>
     <div class="col-6 horaFechamento" style="display: none">
         <label asp-for="HoraFechamento"></label>
         <div class="d-flex justify-content-between">
-            <input asp-for="HoraFechamento" class="form-control" />
+            <input asp-for="HoraFechamento" class="form-control ml-3" />
             <span asp-validation-for="HoraFechamento" class="text-danger mb-3" style="text-align: center"></span>
         </div>
     </div>

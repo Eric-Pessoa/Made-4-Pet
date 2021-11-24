@@ -28,8 +28,6 @@ namespace Made_4_Pet.Controllers
 
         public IActionResult Index()
         {
-            Cliente cliente = new Cliente();
-            HttpContext.Session.SetObjectAsJson("UserSession", cliente);
             IList<string> horarios = new List<string>();
             //horarios.Add("19h");
             ViewBag.horarios = horarios;
@@ -43,8 +41,6 @@ namespace Made_4_Pet.Controllers
 
         public IActionResult CadastroPrestador()
         {
-            //IList<Categoria> categorias = new List<Categoria>();
-            //categorias.Add(Categoria.BanhoETosa);
             ViewBag.categorias = new List<string>(new string[] { "Creche", "Banho e Tosa", "Hotel", "Parque", "Comércio", "Veterinária", "Hospital" });
             return View();
         }
