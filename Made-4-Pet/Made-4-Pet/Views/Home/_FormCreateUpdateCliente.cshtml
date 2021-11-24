@@ -11,14 +11,14 @@
     <div class="col-3">
         <label asp-for="CPF"></label>
         <div class="d-flex flex-column">
-            <input asp-for="CPF" class="form-control mb-2">
+            <input asp-for="CPF" class="form-control mb-2" id="cpf">
             <span asp-validation-for="CPF" class="text-danger mb-2" style="text-align: center"></span>
         </div>
     </div>
     <div class="col-3">
         <label asp-for="Telefone"></label>
         <div class="d-flex flex-column">
-            <input asp-for="Telefone" class="form-control mb-2">
+            <input asp-for="Telefone" class="form-control mb-2" id="tel">
             <span asp-validation-for="Telefone" class="text-danger mb-2" style="text-align: center"></span>
         </div>
     </div>
@@ -46,7 +46,7 @@
 <div class="form-row d-flex flex-row justify-content-between">
     <div class="col-3">
         <label asp-for="Endereco.CEP"></label>
-        <input asp-for="Endereco.CEP" class="form-control mb-2">
+        <input asp-for="Endereco.CEP" class="form-control mb-2" id="cep">
         <span asp-validation-for="Endereco.CEP" class="text-danger mb-2" style="text-align: center"></span>
     </div>
     <div class="col-4">
@@ -77,3 +77,16 @@
         <span asp-validation-for="Endereco.Complemento" class="text-danger mb-2" style="text-align: center"></span>
     </div>
 </div>
+<script type="text/javascript">
+    var TelMaskBehavior = function (val) {
+        return val.replace(/\D/g, '').length === 11 ? '(00) 00000-0000' : '(00) 0000-00009';
+    },
+        TelOptions = {
+            onKeyPress: function (val, e, field, options) {
+                field.mask(TelMaskBehavior.apply({}, arguments), options);
+            }
+        };
+    $('#tel').mask(TelMaskBehavior, TelOptions);
+    $("#cep").mask("00000-000");
+    $("#cpf").mask("999.999.999-99");
+</script>
