@@ -1,4 +1,13 @@
-﻿.flexCenterRow {
+﻿.linkWithoutDecoration:hover {
+  text-decoration-color: #dda0dd; }
+
+.textPink {
+  color: #dda0dd; }
+
+.footer {
+  background-color: #DCE5EA; }
+
+.flexCenterRow {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -12,7 +21,7 @@
 
 .headerPersonalized {
   height: 10vh;
-  background-color: #cbe0e9; }
+  background-color: #DCE5EA; }
   .headerPersonalized:first-child {
     height: 15vh; }
 
@@ -36,6 +45,3 @@
 .ContainerPersonalized {
   margin: 0 50px;
   padding: 0 15px; }
-
-.footer {
-  background-color: #DCE5EA; }

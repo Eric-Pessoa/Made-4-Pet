@@ -39,12 +39,16 @@ $mediumGrey: #B9CCD5;
     }
 }
 
-@mixin textPink() {
-    color: $mainPink;
-}
-
-@mixin linkWithoutDecoration() {
+.linkWithoutDecoration {
     &:hover {
         text-decoration-color: $mainPink;
     }
+}
+
+.textPink {
+    color: $mainPink;
+}
+
+.footer {
+    background-color: $lightGrey;
 }
