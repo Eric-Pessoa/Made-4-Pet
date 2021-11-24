@@ -6,10 +6,17 @@
     ViewData["Title"] = "Listagem";
     if (HttpContextAccessor.HttpContext.Session.Get("UserSession") != null) { Layout = "_LayoutLogado"; }
 }
+
+
+
 <div>
     <div class="d-flex justify-content-between">
         <div class="w-75">
             <div style="margin-left: 10%">
+                @foreach (var c in Model)
+                {
+                     @(c.Nome)
+                }
                 <p style="font-size: 42px; font-weight: bold">Buscando por <span style="color: #DE9AE8">Banho e Tosa</span></p>
             </div>
             <div class="d-flex flex-column align-items-center" style="overflow: auto; height: 85%">
