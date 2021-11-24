@@ -11,27 +11,34 @@
 
 <link href="~/css/IndexEstab.css" rel="stylesheet" />
 <div class="h-100 w-100 flexCenterColumn">
-    <h4 class="textPink my-3">Informações @Model.Nome</h4>
+    <h4 class="textPink my-4">Informações @Model.Nome</h4>
+    <feedback texto="@TempData["Erro"]" is-error="true"></feedback>
+    <feedback texto="@TempData["Sucesso"]"></feedback>
+    <feedback texto="@TempData["Info"]" classe="alert alert-info"></feedback>
     <div class="divSchedule flexRowPersonalized col-10 h-50">
-        @*<img src="~/img/estabs/villa-pet.png" class="col-5 imgEstab" />*@
         @if (Model.Foto != null)
         {<img src="@Model.Foto" class="col-5 imgEstab" /> }
         else
         { <img src="~/img/no-image-found.png" class="col-5 imgEstab" />}
         <div class="col-5 flexCenterRow flex-wrap">
-            @if (ViewBag.horarios.Count == 0)
+            @*@if (Model.Horarios.Count == 0)
             {
                 <h5 class="text-center">Desculpe, não temos horários disponíveis para o dia escolhido!</h5>
-                @*<h5 class="text-center">Desculpe, estamos sem disponibilidade de agendamento para o dia escolhido!</h5>*@
+                <h5 class="text-center">Desculpe, estamos sem disponibilidade de agendamento para o dia escolhido!</h5>
             }
             else
-            {
-                foreach (var h in ViewBag.horarios)
+            {*@
+                @*@{ var reservados = ViewBag.reservados; }*@ 
+                @foreach (var h in ViewBag.horarios)
                 {
-                    <button class="col-4 scheduleParagraph btn">@h</button>
+                    <form asp-action="AgendarHorario" asp-controller="Estabelecimento" class="col-4">
+                        <input name="horario" value="@h" type="hidden" />
+                        @*<input name="data" value="@data" type="hidden" />*@
+                        <button type="submit" class="col-12 my-2 scheduleParagraph btn">@h</button>
+                    </form>
                 }
 
-            }
+            @*}*@
         </div>
     </div>
     <div class="divInfo flexCenterRow h-50 col-10 mt-3">
