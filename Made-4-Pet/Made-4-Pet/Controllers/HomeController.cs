@@ -2,6 +2,7 @@
 using FireSharp.Interfaces;
 using FireSharp.Response;
 using Made_4_Pet.Models;
+using Made_4_Pet.SessionHelpers;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json.Linq;
@@ -49,9 +50,10 @@ namespace Made_4_Pet.Controllers
 
             foreach (var g in json)
             {
-                var gerente = g.Value.ToObject<Cliente>();
-                if (gerente.Email == email && gerente.Senha == senha)
+                var cliente = g.Value.ToObject<Cliente>();
+                if (cliente.Email == email && cliente.Senha == senha)
                 {
+                    HttpContext.Session.SetObjectAsJson("UserSession", cliente);
                     return RedirectToAction("Index", "home");
                 }
             }

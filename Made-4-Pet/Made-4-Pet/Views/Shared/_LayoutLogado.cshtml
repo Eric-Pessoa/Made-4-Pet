@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Http
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+<!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="utf-8" />
@@ -10,7 +12,7 @@
     <link rel="stylesheet" href="~/css/LayoutLogado.css" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
-<body>
+<body style="background-color: ghostwhite">
     <header>
         <nav class="headerPersonalized navbar navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom box-shadow mb-3">
             <div class="d-flex justify-content-between align-items-center col-12">
@@ -30,7 +32,8 @@
                     <a class="btn btnPink" asp-action="Login" asp-controller="home"><img src="~/img/icons/cart.png" id="cart" width="40" /></a>
                 </div>
                 <div class="col-2">
-                    <a class="btn btnPinkPill" href="#">GIOVANNA</a>
+                    @{ var user = @HttpContextAccessor.HttpContext.Session.Get("UserSession"); }
+                    <a class="btn btnPinkPill" href="#">Gi</a>
                 </div>
             </div>
         </nav>
