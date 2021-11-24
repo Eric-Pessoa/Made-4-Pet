@@ -27,11 +27,6 @@ namespace Made_4_Pet.Models
         [Required(ErrorMessage = "Informe a cidade.")]
         public string Cidade { get; set; }
 
-        [MinLength(2, ErrorMessage = "O UF precisa ter 2 caracteres.")]
-        [MaxLength(2, ErrorMessage = "O UF precisa ter 2 caracteres.")]
-        [Required(ErrorMessage = "Informe a UF.")]
-        public string UF { get; set; }
-
         [MinLength(5, ErrorMessage = "O nome do Logradouro deve ter, no mínimo, 5 caracteres.")]
         [MaxLength(40, ErrorMessage = "O nome do Logradouro precisa ter, no máximo, 40 caracteres.")]
         [Required(ErrorMessage = "Informe o Logradouro.")]

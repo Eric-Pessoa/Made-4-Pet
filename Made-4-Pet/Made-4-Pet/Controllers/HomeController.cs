@@ -68,12 +68,23 @@ namespace Made_4_Pet.Controllers
         [HttpPost]
         public IActionResult Cadastro(Cliente cliente)
         {
-            client = new FireSharp.FirebaseClient(config);
-            PushResponse response = client.Push("cliente/", cliente);
-            cliente.ClienteId = response.Result.name;
-            SetResponse setResponse = client.Set("cliente/" + cliente.ClienteId, cliente);
-            TempData["Sucesso"] = "Cadastrado com sucesso";
-            return RedirectToAction("Index", "home");
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    client = new FireSharp.FirebaseClient(config);
+                    PushResponse response = client.Push("cliente/", cliente);
+                    cliente.ClienteId = response.Result.name;
+                    SetResponse setResponse = client.Set("cliente/" + cliente.ClienteId, cliente);
+                    TempData["Sucesso"] = "Cadastrado com sucesso";
+                    return RedirectToAction("Index", "home");
+                }
+                catch (Exception)
+                {
+                    return View();
+                }
+            }
+            return View();
         }
 
         [HttpGet]
