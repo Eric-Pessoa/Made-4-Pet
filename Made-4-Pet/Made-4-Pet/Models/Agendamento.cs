@@ -18,9 +18,9 @@ namespace Made_4_Pet.Models
 
         public string Servico { get; set; }
 
-        [Display(Name = "Data")]
-        [Required(ErrorMessage = "É obrigatório escolher uma data para realizar um agendamento.")]
-        public DateTime DataAgendamento { get; set; }
+        //[Display(Name = "Data")]
+        //[Required(ErrorMessage = "É obrigatório escolher uma data para realizar um agendamento.")]
+        //public DateTime DataAgendamento { get; set; }
         
         [Display(Name = "Hora")]
         [Required(ErrorMessage = "É obrigatório escolher um horário para realizar um agendamento.")]

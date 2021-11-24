@@ -42,7 +42,16 @@ namespace Made_4_Pet.Models
         [Display(Name = "URL da foto do estabelecimento")]
         public string Foto { get; set; }
 
+        [Required(ErrorMessage = "Selecione pelo menos uma categoria.")]
         public string[] Categorias { get; set; }
+
+        [DataType(DataType.Time)]
+        [Display(Name = "Hora de Abertura")]
+        public DateTime HoraAbertura { get; set; }
+
+        [DataType(DataType.Time)]
+        [Display(Name = "Hora de Fechamento")]
+        public DateTime HoraFechamento { get; set; }
 
     }
 

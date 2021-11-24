@@ -33,18 +33,6 @@
             <span asp-validation-for="Telefone" class="text-danger mb-3" style="text-align: center"></span>
         </div>
     </div>
-    @*<div class="col-4">
-            <label asp-for="Categorias"></label>
-            <div class="d-flex flex-column">
-                @foreach (var c in ViewBag.categorias)
-                {
-                    <label>@c</label>
-                    <input name="categoria" type="checkbox" value="@c" />
-                }
-                <input asp-for="Categorias" class="form-control mb-2" />
-                <span asp-validation-for="Categorias" class="text-danger mb-3" style="text-align: center"></span>
-            </div>
-        </div>*@
     <div class="col-6">
         <div class="mx-auto mb-2">
             <label asp-for="CNPJ"></label>
@@ -54,18 +42,33 @@
     </div>
 </div>
 <div class="form-row d-flex flex-row justify-content-between">
-    <div class="col-12">
-        <p>Categorias</p>
+    <div class="col-12 mb-2">
+        <label>Serviços oferecidos</label>
         <div class="d-flex justify-content-between">
             @foreach (var c in ViewBag.categorias)
             {
                 <div>
-                    <input name="categorias" type="checkbox" value="@c" />
-                    <label>@c</label>
+                    <input name="categorias" type="checkbox" value="@c" id="@c" />
+                    <label for="@c">@c</label>
                 </div>
             }
-            @*<input asp-for="Categorias" class="form-control mb-2" />*@
             <span asp-validation-for="Categorias" class="text-danger mb-3" style="text-align: center"></span>
+        </div>
+    </div>
+</div>
+<div class="form-row d-flex flex-row justify-content-between mb-3">
+    <div class="col-6 horaAbertura" style="display: none">
+        <label asp-for="HoraAbertura"></label>
+        <div class="d-flex justify-content-between">
+            <input asp-for="HoraAbertura" class="form-control" />
+            <span asp-validation-for="HoraAbertura" class="text-danger mb-3" style="text-align: center"></span>
+        </div>
+    </div>
+    <div class="col-6 horaFechamento" style="display: none">
+        <label asp-for="HoraFechamento"></label>
+        <div class="d-flex justify-content-between">
+            <input asp-for="HoraFechamento" class="form-control" />
+            <span asp-validation-for="HoraFechamento" class="text-danger mb-3" style="text-align: center"></span>
         </div>
     </div>
 </div>
@@ -118,4 +121,22 @@
     $('#tel').mask(TelMaskBehavior, TelOptions);
     $("#cep").mask("00000-000");
     $('#cnpj').mask('00.000.000/0000-00', { reverse: true });
+
+
+    var categorias = document.getElementsByName("categorias");
+    document.addEventListener('click', () => {
+        for (var i in categorias) {
+            var c = categorias[i].value;
+            if (c == "Banho e Tosa" && categorias[i].checked) {
+                console.log("eai");
+                document.querySelector(".horaAbertura").style = "display: inherit";
+                document.querySelector(".horaFechamento").style = "display: inherit";
+            } else if (c == "Banho e Tosa" && !categorias[i].checked) {
+                console.log("boi");
+                document.querySelector(".horaAbertura").style = "display: none";
+                document.querySelector(".horaFechamento").style = "display: none";
+            }
+        }
+    })
+    
 </script>
