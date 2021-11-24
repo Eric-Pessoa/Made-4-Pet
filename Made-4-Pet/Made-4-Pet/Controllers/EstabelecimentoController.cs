@@ -25,6 +25,7 @@ namespace Made_4_Pet.Controllers
         List<Estabelecimento> estabelecimentos;
 
 
+
         public IActionResult Index()
         {
             Cliente cliente = new Cliente();
@@ -86,15 +87,45 @@ namespace Made_4_Pet.Controllers
                 }
                 else if(categoria != null)
                 {
+                    IList<Estabelecimento> listaFiltrada = new List<Estabelecimento>();
                     switch (categoria)
                     {
                         case "banhoETosa":
-                            var filter = estabelecimentos.FindAll(i => i.Nome.ToLower().Contains(categoria.ToLower()));
-                             return View();
+                            foreach (var c in estabelecimentos)
+                            {
+                                foreach (var y in c.Categorias)
+                                {
+                                    if(y == "Banho e Tosa")
+                                    {
+                                        listaFiltrada.Add(c);
+                                    }
+                                }
+                            }
+                            return View(listaFiltrada);
                         case "saude":
-                            return View();
+                            foreach (var c in estabelecimentos)
+                            {
+                                foreach (var y in c.Categorias)
+                                {
+                                    if (y == "Veterinária" || y == "Hospital")
+                                    {
+                                        listaFiltrada.Add(c);
+                                    }
+                                }
+                            }
+                            return View(listaFiltrada);
                         case "crecheEHotel":
-                            return View();
+                            foreach (var c in estabelecimentos)
+                            {
+                                foreach (var y in c.Categorias)
+                                {
+                                    if (y == "Creche" || y == "Hotel")
+                                    {
+                                        listaFiltrada.Add(c);
+                                    }
+                                }
+                            }
+                            return View(listaFiltrada);
                     }
                 }
             }
