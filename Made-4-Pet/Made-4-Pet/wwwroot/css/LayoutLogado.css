@@ -1,4 +1,13 @@
-﻿.flexCenterRow {
+﻿.linkWithoutDecoration:hover {
+  text-decoration-color: #dda0dd; }
+
+.textPink {
+  color: #dda0dd; }
+
+.footer {
+  background-color: #DCE5EA; }
+
+.flexCenterRow {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -36,6 +45,3 @@
   margin-left: 1%; }
   .btnSearch:hover {
     background-color: #D883D8; }
-
-.linkWithoutDecoration:hover {
-  text-decoration-color: #dda0dd; }

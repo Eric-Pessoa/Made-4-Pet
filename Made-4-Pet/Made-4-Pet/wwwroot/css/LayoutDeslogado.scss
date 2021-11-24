@@ -11,7 +11,7 @@
 
 .headerPersonalized {
     height: 10vh;
-    background-color: $mainGrey;
+    background-color: $lightGrey;
     &:first-child {
         height: 15vh;
     }
@@ -33,8 +33,4 @@
 .ContainerPersonalized {
     margin: 0 50px;
     padding: 0 15px;
-}
-
-.footer {
-    background-color: $lightGrey;
 }

@@ -87,6 +87,13 @@ namespace Made_4_Pet.Controllers
             return View();
         }
 
+        [HttpGet]
+        public IActionResult Logout()
+        {
+            HttpContext.Session.Clear();
+            return RedirectToAction("index");
+        }
+
         public IActionResult Privacy()
         {
             return View();

@@ -1,4 +1,13 @@
-﻿.flexCenterRow {
+﻿.linkWithoutDecoration:hover {
+  text-decoration-color: #dda0dd; }
+
+.textPink {
+  color: #dda0dd; }
+
+.footer {
+  background-color: #DCE5EA; }
+
+.flexCenterRow {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -19,6 +28,3 @@
   background-color: #dda0dd;
   padding: 2%;
   margin: 0; }
-
-.textPink {
-  color: #dda0dd; }
