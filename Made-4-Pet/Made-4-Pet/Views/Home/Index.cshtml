@@ -1,7 +1,10 @@
-﻿@{
-    ViewData["Title"] = "Tela inicial";
-}
+﻿@using Microsoft.AspNetCore.Http
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
 
+@{
+    ViewData["Title"] = "Página inicial";
+    if (HttpContextAccessor.HttpContext.Session.Get("UserSession") != null) { Layout = "_LayoutLogado"; }
+}
 <link rel="stylesheet" href="~/css/TelaInicial.css" />
 
 
@@ -9,10 +12,10 @@
     <feedback texto="@TempData["Erro"]" is-error="true"></feedback>
     <feedback texto="@TempData["Sucesso"]"></feedback>
     <div class="container1">
-        <div class="container2-1" >
+        <div class="container2-1">
             <p class="h1 text-center h1Form">Do que você precisa hoje?</p>
             <form asp-action="ProcuraPorServico" asp-controller="Estabelecimento" class="col-12 form">
-                <input name="nomeBusca" class="form-control" id="pesquisa" placeholder="Procurar item por nome"/>
+                <input name="nomeBusca" class="form-control" id="pesquisa" placeholder="Procurar item por nome" />
                 <button type="submit" class="btn p-0 col-1">
                     <span class="material-icons">
                         search

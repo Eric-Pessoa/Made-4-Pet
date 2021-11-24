@@ -1,7 +1,10 @@
-﻿@model IList<Estabelecimento> 
+﻿@model IList<Estabelecimento>
+@using Microsoft.AspNetCore.Http
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+
 @{
-    ViewData["title"] = "Listagem";
-    Layout = "_LayoutLogado";
+    ViewData["Title"] = "Listagem";
+    if (HttpContextAccessor.HttpContext.Session.Get("UserSession") != null) { Layout = "_LayoutLogado"; }
 }
 <div>
     <div class="d-flex justify-content-between">
