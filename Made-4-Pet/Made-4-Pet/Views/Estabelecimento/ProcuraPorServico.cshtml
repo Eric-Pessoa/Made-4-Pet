@@ -34,7 +34,7 @@
                         <p style="margin-bottom: 0">@estab.Endereco.Cidade -  @estab.Endereco.Bairro</p>
                     </div>
                     <div class="mx-auto" style="width: 10vw;">
-                        <a class="btn btn-warning" asp-action="index" asp-controller="estabelecimento">Ver Conteúdo</a>
+                        <a class="btn btn-warning" asp-action="index" asp-route-id="@estab.EstabelecimentoId" asp-controller="estabelecimento">Ver Conteúdo</a>
                     </div>
                 </div>
             }

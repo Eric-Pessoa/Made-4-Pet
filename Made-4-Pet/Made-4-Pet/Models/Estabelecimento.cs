@@ -53,6 +53,8 @@ namespace Made_4_Pet.Models
         [Display(Name = "Hora de Fechamento")]
         public DateTime HoraFechamento { get; set; }
 
+        public IList<string> Horarios { get; set; }
+
     }
 
 }

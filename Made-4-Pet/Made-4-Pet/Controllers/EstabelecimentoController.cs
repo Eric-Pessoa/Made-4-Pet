@@ -26,12 +26,19 @@ namespace Made_4_Pet.Controllers
 
 
 
-        public IActionResult Index()
+        public IActionResult Index(string id)
         {
-            IList<string> horarios = new List<string>();
-            //horarios.Add("19h");
-            ViewBag.horarios = horarios;
-            return View();
+            client = new FireSharp.FirebaseClient(config);
+            FirebaseResponse response = client.Get("/estabelecimento/");
+            JObject json = JObject.Parse(response.Body);
+            Estabelecimento estab = new Estabelecimento();
+            foreach (var i in json)
+            {
+                var e = i.Value.ToObject<Estabelecimento>();
+                if (e.EstabelecimentoId == id) { estab = e; break; }
+            }
+            ViewBag.horarios = estab.Horarios;
+            return View(estab);
         }
         [HttpGet]
         public IActionResult ProcuraPorServico()
@@ -59,6 +66,14 @@ namespace Made_4_Pet.Controllers
                     {
                         estabelecimento.Categorias.Append(c);
                     }
+                    TimeSpan hora = TimeSpan.FromHours(1);
+                    IList<string> horarios = new List<string>();
+
+                    for (var h = estabelecimento.HoraAbertura; h < estabelecimento.HoraFechamento; h += hora)
+                    {
+                        horarios.Add(h.ToShortTimeString());
+                    }
+                    estabelecimento.Horarios = horarios;
                     SetResponse setResponse = client.Set("estabelecimento/" + estabelecimento.EstabelecimentoId, estabelecimento);
                     TempData["Sucesso"] = "Cadastrado com sucesso";
                     return RedirectToAction("index", "home");
