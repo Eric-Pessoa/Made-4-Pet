@@ -95,6 +95,7 @@ namespace Made_4_Pet.Controllers
                 if (nomeBusca != null)
                 {
                     var filter = estabelecimentos.FindAll(i => i.Nome.ToLower().Contains(nomeBusca.ToLower()));
+                    ViewBag.Pesquisa = nomeBusca;
                     return View(filter);
                 }
                 else if(categoria != null)
@@ -113,6 +114,7 @@ namespace Made_4_Pet.Controllers
                                     }
                                 }
                             }
+                            ViewBag.Pesquisa = "Banho e tosa";
                             return View(listaFiltrada);
                         case "saude":
                             foreach (var c in estabelecimentos)
@@ -125,6 +127,7 @@ namespace Made_4_Pet.Controllers
                                     }
                                 }
                             }
+                            ViewBag.Pesquisa = " Saúde";
                             return View(listaFiltrada);
                         case "crecheEHotel":
                             foreach (var c in estabelecimentos)
@@ -137,6 +140,7 @@ namespace Made_4_Pet.Controllers
                                     }
                                 }
                             }
+                            ViewBag.Pesquisa = " Creches e hotéis";
                             return View(listaFiltrada);
                     }
                 }
