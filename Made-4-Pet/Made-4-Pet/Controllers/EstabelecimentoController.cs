@@ -51,16 +51,28 @@ namespace Made_4_Pet.Controllers
         [HttpPost]
         public IActionResult CadastroPrestador(Estabelecimento estabelecimento, IList<string> categorias)
         {
-            client = new FireSharp.FirebaseClient(config);
-            PushResponse response = client.Push("estabelecimento/", estabelecimento);
-            estabelecimento.EstabelecimentoId = response.Result.name;
-            foreach (var c in categorias)
+            if (ModelState.IsValid)
             {
-                estabelecimento.Categorias.Append(c);
+                try
+                {
+                    client = new FireSharp.FirebaseClient(config);
+                    PushResponse response = client.Push("estabelecimento/", estabelecimento);
+                    estabelecimento.EstabelecimentoId = response.Result.name;
+                    foreach (var c in categorias)
+                    {
+                        estabelecimento.Categorias.Append(c);
+                    }
+                    SetResponse setResponse = client.Set("estabelecimento/" + estabelecimento.EstabelecimentoId, estabelecimento);
+                    TempData["Sucesso"] = "Cadastrado com sucesso";
+                    return RedirectToAction("index", "home");
+                } catch (Exception)
+                {
+                    return View();
+                }
+
             }
-            SetResponse setResponse = client.Set("estabelecimento/" + estabelecimento.EstabelecimentoId, estabelecimento);
-            TempData["Sucesso"] = "Cadastrado com sucesso";
-            return RedirectToAction("index", "home");
+            ViewBag.categorias = new List<string>(new string[] { "Creche", "Banho e Tosa", "Hotel", "Parque", "Comércio", "Veterinária", "Hospital" });
+                return View();
         }
 
         [HttpPost]

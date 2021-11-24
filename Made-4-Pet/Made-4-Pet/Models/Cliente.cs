@@ -37,7 +37,6 @@ namespace Made_4_Pet.Models
         [MaxLength(14, ErrorMessage = "O CPF deve ter 11 caracteres.")]
         public string CPF { get; set; }
 
-        [RegularExpression(@"(^[0-9]{2})([9]{1})?([0-9]{8})", ErrorMessage = "O telefone deve ter 11 caracteres sem pontuação (ddd + número). Ex: 11912345678.")]
         [Required(ErrorMessage = "O telefone é obrigatório.")]
         [MaxLength(15, ErrorMessage = "O telefone deve ter no máximo 15 caracteres.")]
         [MinLength(13, ErrorMessage = "O telefone deve ter no mínimo 13 caracteres.")]
