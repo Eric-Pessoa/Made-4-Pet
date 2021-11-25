@@ -8,7 +8,7 @@
     ViewData["title"] = "Listagem";
     if (HttpContextAccessor.HttpContext.Session.Get("UserSession") != null) { Layout = "_LayoutLogado"; }
 }
-
+@{ var podeAgendar = ViewBag.podeAgendar; }
 <link href="~/css/IndexEstab.css" rel="stylesheet" />
 <div class="h-100 w-100 flexCenterColumn">
     <h4 class="textPink my-4">Informações @Model.Nome</h4>
@@ -16,32 +16,35 @@
     <feedback texto="@TempData["Sucesso"]"></feedback>
     <feedback texto="@TempData["Info"]" classe="alert alert-info"></feedback>
     <div class="divSchedule flexRowPersonalized col-10 h-50">
-        @if (Model.Foto != null)
-        {<img src="@Model.Foto" class="col-5 imgEstab" /> }
-        else
-        { <img src="~/img/no-image-found.png" class="col-5 imgEstab" />}
-    <div class="col-5 flexCenterRow flex-wrap">
-        <input type="date" class="form-control" />
-        @foreach (var h in ViewBag.horarios)
+        @if (podeAgendar)
         {
-            if (h != "Sem horários disponíveis.")
-            {
-                <form asp-action="AgendarHorario" asp-controller="Estabelecimento" class="col-4">
-                    <input name="horario" value="@h" type="hidden" />
-                    @*<input name="data" value="@data" type="hidden" />*@
-                    <button type="submit" class="col-12 my-2 scheduleParagraph btn">@h</button>
-                </form>
-            }
+            @if (Model.Foto != null)
+            {<img src="@Model.Foto" class="col-5 imgEstab" /> }
             else
-            {
-                <div>
-                    <p class="text-info">@h</p>
-                </div>
-            }
+            { <img src="~/img/no-image-found.png" class="col-5 imgEstab" />}
+            <div class="col-5 flexCenterRow flex-wrap">
+                <input type="date" class="form-control" />
+                @foreach (var h in Model.Horarios)
+                {
+                    if (h != "Sem horários disponíveis.")
+                    {
+                        <form asp-action="AgendarHorario" asp-controller="Estabelecimento" class="col-4">
+                            <input name="horario" value="@h" type="hidden" />
+                            @*<input name="data" value="@data" type="hidden" />*@
+                            <button type="submit" class="col-12 my-2 scheduleParagraph btn">@h</button>
+                        </form>
+                    }
+                    else { <div> <p class="text-info">@h</p> </div> }
+                }
+            </div>
         }
-
-        @*}*@
-    </div>
+        else
+        {
+            @if (Model.Foto != null)
+            {<img src="@Model.Foto" class="col-12 imgEstab" /> }
+            else
+            { <img src="~/img/no-image-found.png" class="col-12 imgEstab" />}
+        }
     </div>
     <div class="divInfo flexCenterRow h-50 col-10 mt-3">
         <div class="col-6 flexCenterColumn">
