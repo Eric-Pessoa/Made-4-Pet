@@ -44,17 +44,15 @@
 <div class="form-row d-flex flex-row justify-content-between">
     <div class="col-12 mb-2">
         <label>Serviços oferecidos</label>
-        <div class="flexCenterColumn col-12">
-            <div class="d-flex justify-content-between f-wrap">
-                @foreach (var c in ViewBag.categorias)
-                {
-                    <div class="divCategoria">
-                        <input name="categorias" type="checkbox" value="@c" id="@c" />
-                        <label for="@c">@c</label>
-                    </div>
-                }
-                <span asp-validation-for="Categorias" class="text-danger mb-3" style="text-align: center"></span>
-            </div>
+        <div class="d-flex justify-content-between f-wrap">
+            @foreach (var c in ViewBag.categorias)
+            {
+                <div>
+                    <input name="categorias" type="checkbox" value="@c" id="@c" />
+                    <label for="@c">@c</label>
+                </div>
+            }
+            <span asp-validation-for="Categorias" class="text-danger mb-3" style="text-align: center"></span>
         </div>
     </div>
 </div>
@@ -140,5 +138,5 @@
             }
         }
     })
-    
+
 </script>
