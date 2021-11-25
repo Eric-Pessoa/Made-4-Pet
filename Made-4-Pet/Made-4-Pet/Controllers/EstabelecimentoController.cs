@@ -195,10 +195,14 @@ namespace Made_4_Pet.Controllers
             PushResponse response = client.Push("agendamento/", agendamento);
             agendamento.AgendamentoId = response.Result.name;
             client.Set("agendamento/" + agendamento.AgendamentoId, agendamento);
-            //estab.Horarios.Remove(horario);
-            //client.Update("/estabelecimento/" + estab.EstabelecimentoId, estab);
+            if (estab.Horarios.Count == 1)
+            {
+                estab.Horarios.Add("Sem horários disponíveis.");
+            }
+            estab.Horarios.Remove(horario);
+            client.Update("/estabelecimento/" + estab.EstabelecimentoId, estab);
 
-            //HttpContext.Session.SetObjectAsJson("EstabSession", estab);
+            HttpContext.Session.SetObjectAsJson("EstabSession", estab);
             TempData["Info"] = $"Banho e Tosa marcados para {horario}!";
             return RedirectToAction("index", new { id = estab.EstabelecimentoId });
         }
