@@ -52,3 +52,7 @@
   margin-left: 1%; }
   .btnSearch:hover {
     background-color: #D883D8; }
+
+.ContainerPersonalized {
+  margin: 0 50px 150px 50px;
+  padding: 0 15px; }
