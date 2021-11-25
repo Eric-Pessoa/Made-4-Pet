@@ -24,28 +24,52 @@ namespace Made_4_Pet.Controllers
         JObject json;
         List<Estabelecimento> estabelecimentos;
 
-        public IActionResult Index(string id)
+        public IActionResult Index(string id, string dataBusca)
         {
             client = new FireSharp.FirebaseClient(config);
             FirebaseResponse estabs = client.Get("/estabelecimento/");
+            FirebaseResponse agendamentosBanco = client.Get("/agendamento/");
+            JObject jsonAgendamentos = new JObject();
+
             JObject jsonEstabs = JObject.Parse(estabs.Body);
+            if (agendamentosBanco.Body != "null")
+            {
+                jsonAgendamentos = JObject.Parse(agendamentosBanco.Body);
+            }
+
             Estabelecimento estab = new Estabelecimento();
+            IList<string> agendamentos = new List<string>();
             var podeAgendar = false;
+            string data = "";
+            if (dataBusca != null) { data = DateTime.Parse(dataBusca).ToString(); }
+            ViewBag.data = data;
             foreach (var i in jsonEstabs)
             {
                 var e = i.Value.ToObject<Estabelecimento>();
-                if (e.EstabelecimentoId == id) { estab = e; break; }
-            }
-            foreach(var c in estab.Categorias)
-            {
-                if (c == "Banho e Tosa")
-                {
-                    podeAgendar = true;
+                if (e.EstabelecimentoId == id) 
+                { 
+                    estab = e; 
+                    if (jsonAgendamentos.Count > 0)
+                    {
+                        foreach (var json in jsonAgendamentos)
+                        {
+                            var a = json.Value.ToObject<Agendamento>();
+                            if (a.EstabId == e.EstabelecimentoId && dataBusca != null)
+                            {
+                                if (data == a.DataAgendamento)
+                                {
+                                    agendamentos.Add(a.HorarioAgendamento);
+                                }
+                            }
+                        }
+                    }
+                    break; 
                 }
             }
+            foreach(var c in estab.Categorias) { if (c == "Banho e Tosa") { podeAgendar = true; } }
             HttpContext.Session.SetObjectAsJson("EstabSession", estab);
-            ViewBag.horarios = estab.Horarios;
             ViewBag.podeAgendar = podeAgendar;
+            ViewBag.agendamentos = agendamentos;
             return View(estab);
         }
         [HttpGet]
@@ -81,8 +105,13 @@ namespace Made_4_Pet.Controllers
                     {
                         horarios.Add(h.ToShortTimeString());
                     }
-                    estabelecimento.Horarios = horarios;
-                    SetResponse setResponse = client.Set("estabelecimento/" + estabelecimento.EstabelecimentoId, estabelecimento);
+                    Agenda agenda = new Agenda()
+                    {
+                        EstabId = estabelecimento.EstabelecimentoId,
+                        Horarios = horarios,
+                    };
+                    estabelecimento.Agenda = agenda;
+                    client.Set("estabelecimento/" + estabelecimento.EstabelecimentoId, estabelecimento);
                     TempData["Sucesso"] = "Cadastrado com sucesso";
                     return RedirectToAction("index", "home");
                 } catch (Exception)
@@ -168,7 +197,7 @@ namespace Made_4_Pet.Controllers
         }
 
         [HttpPost]
-        public IActionResult AgendarHorario(string horario)
+        public IActionResult AgendarHorario(string horario, string data)
         {
             Cliente cliente = HttpContext.Session.GetObjectFromJson<Cliente>("UserSession");
             if (cliente == null)
@@ -177,34 +206,27 @@ namespace Made_4_Pet.Controllers
                 return RedirectToAction("login", "home");
             }
             Estabelecimento estab = HttpContext.Session.GetObjectFromJson<Estabelecimento>("EstabSession");
-            foreach (var c in estab.Categorias)
+            if(data == null)
             {
-                if(c == "Banho e Tosa")
-                {
-                    Agendamento agendamento = new Agendamento()
-                    {
-                        EstabId = estab.EstabelecimentoId,
-                        ClienteId = cliente.ClienteId,
-                        HorarioAgendamento = horario,
-                    };
-
-                    client = new FireSharp.FirebaseClient(config);
-                    PushResponse response = client.Push("agendamento/", agendamento);
-                    agendamento.AgendamentoId = response.Result.name;
-                    client.Set("agendamento/" + agendamento.AgendamentoId, agendamento);
-                    if (estab.Horarios.Count == 1)
-                    {
-                        estab.Horarios.Add("Sem horários disponíveis.");
-                    }
-                    estab.Horarios.Remove(horario);
-                    client.Update("/estabelecimento/" + estab.EstabelecimentoId, estab);
-
-                    HttpContext.Session.SetObjectAsJson("EstabSession", estab);
-                    TempData["Info"] = $"Banho e Tosa marcados para {horario}!";
-                    return RedirectToAction("index", new { id = estab.EstabelecimentoId });
-                }
+                TempData["Erro"] = "Escolha uma data para agendar um horário.";
+                return RedirectToAction("Index", new { id = estab.EstabelecimentoId });
             }
-            TempData["Info"] = "Só é possível agendar um horário para banho e tosa...";
+            Agendamento agendamento = new Agendamento()
+            {
+                EstabId = estab.EstabelecimentoId,
+                ClienteId = cliente.ClienteId,
+                DataAgendamento = data,
+                HorarioAgendamento = horario,
+            };
+            //data = DateTime.Parse(dataBusca).ToString();
+            client = new FireSharp.FirebaseClient(config);
+            PushResponse response = client.Push("agendamento/", agendamento);
+            agendamento.AgendamentoId = response.Result.name;
+            client.Set("agendamento/" + agendamento.AgendamentoId, agendamento);
+            client.Update("/estabelecimento/" + estab.EstabelecimentoId, estab);
+
+            HttpContext.Session.SetObjectAsJson("EstabSession", estab);
+            TempData["Info"] = $"Banho e Tosa marcados para {horario}, dia {data}!";
             return RedirectToAction("index", new { id = estab.EstabelecimentoId });
 
         }

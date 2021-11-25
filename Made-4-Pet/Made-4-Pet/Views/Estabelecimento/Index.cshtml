@@ -3,7 +3,6 @@
 @using Microsoft.AspNetCore.Http
 @inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
 
-
 @{
     ViewData["title"] = "Listagem";
     if (HttpContextAccessor.HttpContext.Session.Get("UserSession") != null) { Layout = "_LayoutLogado"; }
@@ -22,21 +21,67 @@
             {<img src="@Model.Foto" class="col-5 imgEstab" /> }
             else
             { <img src="~/img/no-image-found.png" class="col-5 imgEstab" />}
-            <div class="col-5 flexCenterRow flex-wrap">
-                <input type="date" class="form-control" />
-                @foreach (var h in Model.Horarios)
+    <div class="flexCenterColumn col-5">
+        <form class="flexCenterRow mb-2" asp-action="index">
+            <input type="date" class="form-control" name="dataBusca" />
+            <button type="submit" class="btn btnPink">buscar</button>
+        </form>
+        @{ 
+            string data = ViewBag.data;
+            IList<string> agendamentos = ViewBag.agendamentos;
+        }
+        @if (data != "")
+        {
+            <p class="form-control col-4 text-center">@data.Replace(" 00:00:00", "")</p>
+        }
+        <div class="col-12 flexCenterRow flex-wrap">
+            @*@if (agendamentos.Count > 0) { Agenda agenda = new Agenda() { Horarios = new List<string>() };
+                foreach (var h in Model.Agenda.Horarios)
                 {
-                    if (h != "Sem horários disponíveis.")
+                    foreach (var a in agendamentos)
                     {
-                        <form asp-action="AgendarHorario" asp-controller="Estabelecimento" class="col-4">
-                            <input name="horario" value="@h" type="hidden" />
-                            @*<input name="data" value="@data" type="hidden" />*@
-                            <button type="submit" class="col-12 my-2 scheduleParagraph btn">@h</button>
-                        </form>
+                        if (a == data && !agendamentos.Contains(h))
+                        {
+                            if (agenda.Horarios.Count == 0) { agenda.Horarios.Add(h); }
+                            else
+                            {
+                                if (!agenda.Horarios.Contains(h))
+                                {
+                                    agenda.Horarios.Add(h);
+                                    break;
+                                }
+                            }
+                        }
                     }
-                    else { <div> <p class="text-info">@h</p> </div> }
+                }*@
+            @if (agendamentos.Count > 0)
+            {
+                var lista = Model.Agenda.Horarios.Except(agendamentos);
+                foreach (var h in lista)
+                {
+                    <form asp-action="AgendarHorario" asp-controller="Estabelecimento" class="col-4">
+                        <input name="horario" value="@h" type="hidden" />
+                        <input name="data" value="@ViewBag.data" type="hidden" />
+                        <button type="submit" class="col-12 my-2 scheduleParagraph btn">@h</button>
+                    </form>
+
                 }
-            </div>
+            }
+
+            else
+            {
+                foreach (var h in Model.Agenda.Horarios)
+                {
+                    <form asp-action="AgendarHorario" asp-controller="Estabelecimento" class="col-4">
+                        <input name="horario" value="@h" type="hidden" />
+                        <input name="data" value="@ViewBag.data" type="hidden" />
+                        <button type="submit" class="col-12 my-2 scheduleParagraph btn">@h</button>
+                    </form>
+                }
+            }
+
+        </div>
+    </div>
         }
         else
         {
