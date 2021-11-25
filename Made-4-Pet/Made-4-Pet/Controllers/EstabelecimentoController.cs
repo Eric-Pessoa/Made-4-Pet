@@ -113,9 +113,24 @@ namespace Made_4_Pet.Controllers
 
                 if (nomeBusca != null)
                 {
-                    var filter = estabelecimentos.FindAll(i => i.Nome.ToLower().Contains(nomeBusca.ToLower()));
+                    var filterByName = estabelecimentos.FindAll(i => i.Nome.ToLower().Contains(nomeBusca.ToLower()));
+                    var filterByAddress = estabelecimentos.FindAll(i => i.Endereco.Logradouro.ToLower().Contains(nomeBusca.ToLower()));
+                    var filterByNeighborhood = estabelecimentos.FindAll(i => i.Endereco.Bairro.ToLower().Contains(nomeBusca.ToLower()));
                     ViewBag.Pesquisa = nomeBusca;
-                    return View(filter);
+                    var lista = new List<Estabelecimento>();
+                    foreach(var i in filterByName)
+                    {
+                        lista.Add(i);
+                    }
+                    foreach (var i in filterByAddress)
+                    {
+                        lista.Add(i);
+                    }
+                    foreach (var i in filterByNeighborhood)
+                    {
+                        lista.Add(i);
+                    }
+                    return View(lista);
                 }
                 else if(categoria != null)
                 {
