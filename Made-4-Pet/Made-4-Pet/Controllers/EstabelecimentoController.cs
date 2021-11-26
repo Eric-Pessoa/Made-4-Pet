@@ -153,15 +153,24 @@ namespace Made_4_Pet.Controllers
                     var lista = new List<Estabelecimento>();
                     foreach(var i in filterByName)
                     {
-                        lista.Add(i);
+                        if (!lista.Contains(i))
+                        {
+                            lista.Add(i);
+                        }
                     }
                     foreach (var i in filterByAddress)
                     {
-                        lista.Add(i);
+                        if (!lista.Contains(i))
+                        {
+                            lista.Add(i);
+                        }
                     }
                     foreach (var i in filterByNeighborhood)
                     {
-                        lista.Add(i);
+                        if (!lista.Contains(i))
+                        {
+                            lista.Add(i);
+                        }
                     }
                     return View(lista);
                 }
