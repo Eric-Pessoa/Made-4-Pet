@@ -12,14 +12,10 @@ namespace Made_4_Pet.Models
 
         public string EstabId { get; set; }
 
-        public Estabelecimento Estab { get; set; }
-
         public string ClienteId { get; set; }
 
-        public Cliente Cliente { get; set; }
+        public string DataAgendamento { get; set; }
 
-        //public DateTime DataAgendamento { get; set; }
-        
         public string HorarioAgendamento { get; set; }
 
     }
