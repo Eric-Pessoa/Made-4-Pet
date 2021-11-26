@@ -46,16 +46,27 @@
     flex-direction: row;
     margin: 3rem 0 0 0;
     width: 50vw;
+
     a {
         display: flex;
         justify-content: center;
         align-items: center;
         flex-direction: column;
     }
+
     img {
         height: 15vh;
         width: 10vw;
         object-fit: cover;
+    }
+
+    button {
+        background-color: ghostwhite;
+        border: 0 solid black;
+        &:focus {
+            border: none;
+            outline: none;
+        }
     }
 }
 

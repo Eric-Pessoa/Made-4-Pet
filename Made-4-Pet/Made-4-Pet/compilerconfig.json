@@ -21,5 +21,9 @@
   {
     "outputFile": "wwwroot/css/IndexEstab.css",
     "inputFile": "wwwroot/css/IndexEstab.scss"
+  },
+  {
+    "outputFile": "wwwroot/css/Form-card.css",
+    "inputFile": "wwwroot/css/Form-card.scss"
   }
 ]

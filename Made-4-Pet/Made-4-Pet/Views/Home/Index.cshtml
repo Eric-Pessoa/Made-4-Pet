@@ -17,7 +17,7 @@
             <form asp-action="ProcuraPorServico" asp-controller="Estabelecimento" class="col-12 form">
                 <input name="nomeBusca" class="form-control" id="pesquisa" placeholder="Procurar estabelecimento por Nome, Bairro ou Rua" />
                 <button type="submit" class="btn p-0 col-1">
-                    <span class="material-icons">
+                    <span class="material-icons text-white">
                         search
                     </span>
                 </button>
@@ -25,21 +25,21 @@
             <div class="divLink">
                 <form asp-controller="Estabelecimento" asp-action="ProcuraPorServico">
                     <input name="categoria" value="banhoETosa" type="hidden" />
-                    <button type="submit" style="background-color: ghostwhite; border: 0 solid black">
+                    <button type="submit">
                         <img src="~/img/banhoETosa.png" />
                         <p class="h3 text-center">Banho e tosa</p>
                     </button>
                 </form>
                 <form asp-controller="Estabelecimento" asp-action="ProcuraPorServico">
                     <input name="categoria" value="saude" type="hidden" />
-                    <button type="submit" style="background-color: ghostwhite; border: 0 solid black">
+                    <button type="submit">
                         <img src="~/img/saude.png" />
                         <p class="h3 text-center">Saúde</p>
                     </button>
                 </form>
                 <form asp-controller="Estabelecimento" asp-action="ProcuraPorServico">
                     <input name="categoria" value="crecheEHotel" type="hidden" />
-                    <button type="submit" style="background-color: ghostwhite; border: 0 solid black">
+                    <button type="submit">
                         <img src="~/img/crecheHotel.png" />
                         <p class="h3 text-center">Creche e hotel</p>
                     </button>
