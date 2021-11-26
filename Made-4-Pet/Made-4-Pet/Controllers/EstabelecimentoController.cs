@@ -24,17 +24,20 @@ namespace Made_4_Pet.Controllers
         JObject json;
         List<Estabelecimento> estabelecimentos;
 
-        public IActionResult Index(string id, string dataBusca)
+        public IActionResult Index(string id, string dataBusca, bool? agendado)
         {
             client = new FireSharp.FirebaseClient(config);
             FirebaseResponse estabs = client.Get("/estabelecimento/");
             FirebaseResponse agendamentosBanco = client.Get("/agendamento/");
             JObject jsonAgendamentos = new JObject();
-
             JObject jsonEstabs = JObject.Parse(estabs.Body);
             if (agendamentosBanco.Body != "null")
             {
                 jsonAgendamentos = JObject.Parse(agendamentosBanco.Body);
+            }
+            if (estabs.Body != "null")
+            {
+                jsonEstabs = JObject.Parse(estabs.Body);
             }
 
             Estabelecimento estab = new Estabelecimento();
@@ -70,6 +73,7 @@ namespace Made_4_Pet.Controllers
             HttpContext.Session.SetObjectAsJson("EstabSession", estab);
             ViewBag.podeAgendar = podeAgendar;
             ViewBag.agendamentos = agendamentos;
+            if (agendado != null) { ViewBag.agendado = true; }
             return View(estab);
         }
         [HttpGet]
@@ -218,16 +222,16 @@ namespace Made_4_Pet.Controllers
                 DataAgendamento = data,
                 HorarioAgendamento = horario,
             };
-            //data = DateTime.Parse(dataBusca).ToString();
             client = new FireSharp.FirebaseClient(config);
             PushResponse response = client.Push("agendamento/", agendamento);
             agendamento.AgendamentoId = response.Result.name;
             client.Set("agendamento/" + agendamento.AgendamentoId, agendamento);
             client.Update("/estabelecimento/" + estab.EstabelecimentoId, estab);
-
+            data = DateTime.Parse(data).ToShortDateString();
+            ViewBag.data = data;
             HttpContext.Session.SetObjectAsJson("EstabSession", estab);
             TempData["Info"] = $"Banho e Tosa marcados para {horario}, dia {data}!";
-            return RedirectToAction("index", new { id = estab.EstabelecimentoId });
+            return RedirectToAction("index", new { id = estab.EstabelecimentoId, dataBusca = data, agendado = true });
 
         }
 

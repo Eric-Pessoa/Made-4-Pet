@@ -53,6 +53,12 @@ $mediumGrey: #B9CCD5;
     background-color: $lightGrey;
 }
 
+.form-control:focus, .btn:focus {
+    outline: 0;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
 @media screen and (max-width: 1700px) {
     .divCategoria {
         flex: 0 0 33.333333%;

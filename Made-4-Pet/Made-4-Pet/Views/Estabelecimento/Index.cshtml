@@ -21,67 +21,57 @@
             {<img src="@Model.Foto" class="col-5 imgEstab" /> }
             else
             { <img src="~/img/no-image-found.png" class="col-5 imgEstab" />}
-    <div class="flexCenterColumn col-5">
-        <form class="flexCenterRow mb-2" asp-action="index">
-            <input type="date" class="form-control" name="dataBusca" />
-            <button type="submit" class="btn btnPink">buscar</button>
-        </form>
-        @{ 
-            string data = ViewBag.data;
-            IList<string> agendamentos = ViewBag.agendamentos;
-        }
-        @if (data != "")
-        {
-            <p class="form-control col-4 text-center">@data.Replace(" 00:00:00", "")</p>
-        }
-        <div class="col-12 flexCenterRow flex-wrap">
-            @*@if (agendamentos.Count > 0) { Agenda agenda = new Agenda() { Horarios = new List<string>() };
-                foreach (var h in Model.Agenda.Horarios)
+            <div class="flexCenterColumn col-5">
+                <form class="flexCenterRow mb-2" asp-action="index">
+                    <input type="date" class="form-control" name="dataBusca" />
+                    <button type="submit" class="btn btnPink">buscar</button>
+                </form>
+                @{
+                    string data = ViewBag.data;
+                    IList<string> agendamentos = ViewBag.agendamentos;
+                }
+                @if (data != "")
                 {
-                    foreach (var a in agendamentos)
+                    <p class="form-control col-4 text-center">@data.Replace(" 00:00:00", "")</p>
+                }
+                <div class="col-12 flexCenterRow flex-wrap">
+                    @if (agendamentos.Count > 0)
                     {
-                        if (a == data && !agendamentos.Contains(h))
+                        var lista = Model.Agenda.Horarios.Except(agendamentos).ToList();
+                        if (lista.Count > 0)
                         {
-                            if (agenda.Horarios.Count == 0) { agenda.Horarios.Add(h); }
-                            else
+                            foreach (var h in lista)
                             {
-                                if (!agenda.Horarios.Contains(h))
-                                {
-                                    agenda.Horarios.Add(h);
-                                    break;
-                                }
+                                <form asp-action="AgendarHorario" asp-controller="Estabelecimento" class="col-4">
+                                    <input name="horario" value="@h" type="hidden" />
+                                    <input name="data" value="@ViewBag.data" type="hidden" />
+                                    <button type="submit" class="col-12 my-2 scheduleParagraph btn">@h</button>
+                                </form>
                             }
                         }
+                        else
+                        { <p class="text-info text-center">Não temos horários disponíveis para a data escolhida!</p> }
                     }
-                }*@
-            @if (agendamentos.Count > 0)
-            {
-                var lista = Model.Agenda.Horarios.Except(agendamentos);
-                foreach (var h in lista)
-                {
-                    <form asp-action="AgendarHorario" asp-controller="Estabelecimento" class="col-4">
-                        <input name="horario" value="@h" type="hidden" />
-                        <input name="data" value="@ViewBag.data" type="hidden" />
-                        <button type="submit" class="col-12 my-2 scheduleParagraph btn">@h</button>
-                    </form>
 
-                }
-            }
+                    else
+                    {
+                        foreach (var h in Model.Agenda.Horarios)
+                        {
+                            <form asp-action="AgendarHorario" asp-controller="Estabelecimento" class="col-4">
+                                <input name="horario" value="@h" type="hidden" />
+                                <input name="data" value="@ViewBag.data" type="hidden" />
+                                <button type="submit" class="col-12 my-2 scheduleParagraph btn">@h</button>
+                            </form>
+                        }
+                    }
+                    <div class="d-none">
+                        @{ var agendado = ViewBag.agendado; }
+                        <p id="id-agendado">@agendado</p>
+                        <a data-target="#modalInfo" data-toggle="modal" id="botaoModal"></a>
+                    </div>
 
-            else
-            {
-                foreach (var h in Model.Agenda.Horarios)
-                {
-                    <form asp-action="AgendarHorario" asp-controller="Estabelecimento" class="col-4">
-                        <input name="horario" value="@h" type="hidden" />
-                        <input name="data" value="@ViewBag.data" type="hidden" />
-                        <button type="submit" class="col-12 my-2 scheduleParagraph btn">@h</button>
-                    </form>
-                }
-            }
-
-        </div>
-    </div>
+                </div>
+            </div>
         }
         else
         {
@@ -91,7 +81,7 @@
             { <img src="~/img/no-image-found.png" class="col-12 imgEstab" />}
         }
     </div>
-    <div class="divInfo flexCenterRow h-50 col-10 mt-3">
+    <div class="d-flex justify-content-between h-50 col-12 mt-3" style="margin-left: 40px">
         <div class="col-6 flexCenterColumn">
             <h5 class="textPink">Serviços oferecidos</h5>
             @foreach (var c in Model.Categorias)
@@ -105,3 +95,31 @@
         </div>
     </div>
 </div>
+
+<script src="~/js/openModal.js"></script>
+
+<div class="modal fade" id="modalInfo" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color: #23272B; color: white">
+                <h5 class="modal-title" id="modalLabel">O que deseja fazer?</h5>
+            </div>
+            <div class="modal-body d-flex align-content-center justify-content-center" style="background-color: var(--header-bg); color: white">
+                <form asp-controller="Home" asp-action="Logout">
+                    <a asp-action="editar" asp-controller="estabelecimento" class="btn btn-secondary m-2">Editar informações</a>
+                    <button type="submit" class="btn btn-dark m-2">Sair</button>
+                </form>
+            </div>
+            <div class="modal-footer flex-column" style="background-color: var(--header-bg); color: white">
+                <p class="text-dark">Digite sua senha caso realmente deseje apagar os dados do estabelecimento <b style="color: var(--main-red)">definitivamente</b>.</p>
+                <div class="d-flex align-items-center justify-content-center w-100" style="padding: .5rem">
+                    <form asp-action="apagar" asp-controller="estabelecimento" class="w-100 d-flex">
+                        <input name="senha" type="password" class="form-control col-6 mx-1" />
+                        <button type="submit" class="btn btn-modal text-white">Apagar estabelecimento</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
