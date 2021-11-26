@@ -1,0 +1,20 @@
+﻿@import "./FlexHelper.scss";
+
+
+.cardStyle {
+    width: 90%;
+    border: 2px solid #dda0dd;
+    border-radius: 15px;
+    height: 80%;
+    padding: 2%;
+}
+
+.formRowStyleButton {
+   @include flexCenterRow();
+    margin-top: 3vh;
+}
+
+
+.formRowStyle {
+    @include flexRowPersonalized(space-between, center);
+}
