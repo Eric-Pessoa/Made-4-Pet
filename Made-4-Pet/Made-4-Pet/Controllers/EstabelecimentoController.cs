@@ -239,6 +239,11 @@ namespace Made_4_Pet.Controllers
                 TempData["Erro"] = "Escolha uma data para agendar um horário.";
                 return RedirectToAction("Index", new { id = estab.EstabelecimentoId });
             }
+            if (DateTime.Parse(data) < DateTime.Today)
+            {
+                TempData["Erro"] = "A data escolhida já passou!";
+                return RedirectToAction("index", new { id = estab.EstabelecimentoId });
+            }
             Agendamento agendamento = new Agendamento()
             {
                 EstabId = estab.EstabelecimentoId,

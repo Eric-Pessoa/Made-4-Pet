@@ -54,9 +54,11 @@ namespace Made_4_Pet.Controllers
                 if (cliente.Email == email && cliente.Senha == senha)
                 {
                     HttpContext.Session.SetObjectAsJson("UserSession", cliente);
+                    TempData["Sucesso"] = "Seja bem-vindo(a) de volta!";
                     return RedirectToAction("Index", "home");
                 }
             }
+            TempData["Erro"] = "Dados de login incorretos! Tente novamente.";
             return View();
         }
 

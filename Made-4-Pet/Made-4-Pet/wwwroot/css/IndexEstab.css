@@ -45,4 +45,13 @@
   height: 40vh;
   width: 75vw;
   object-fit: contain;
-}
+  border-radius: 3rem; }
+
+.btnSearch {
+  background-color: #dda0dd;
+  width: 10%;
+  height: calc(1.5em + .75rem + 2px);
+  align-items: start;
+  margin-left: 1%; }
+  .btnSearch:hover {
+    background-color: #D883D8; }
