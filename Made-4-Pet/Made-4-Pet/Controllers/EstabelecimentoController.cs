@@ -240,10 +240,21 @@ namespace Made_4_Pet.Controllers
                 TempData["Erro"] = "A data escolhida já passou!";
                 return RedirectToAction("index", new { id = estab.EstabelecimentoId });
             }
-            if (DateTime.Parse(data) == DateTime.Today && TimeSpan.Parse(horario) < DateTime.Now.TimeOfDay)
+            if (data.Contains(" AM"))
             {
-                TempData["Erro"] = "O horário escolhido já passou!";
-                return RedirectToAction("index", new { id = estab.EstabelecimentoId });
+                if (DateTime.Parse(data.Replace(" AM", "")) == DateTime.Today && TimeSpan.Parse(horario.Replace(" AM", "")) < DateTime.Now.TimeOfDay)
+                {
+                    TempData["Erro"] = "O horário escolhido já passou!";
+                    return RedirectToAction("index", new { id = estab.EstabelecimentoId });
+                }
+            }
+            if (data.Contains(" PM"))
+            {
+                if (DateTime.Parse(data.Replace(" PM", "")) == DateTime.Today && TimeSpan.Parse(horario.Replace(" PM", "")) < DateTime.Now.TimeOfDay)
+                {
+                    TempData["Erro"] = "O horário escolhido já passou!";
+                    return RedirectToAction("index", new { id = estab.EstabelecimentoId });
+                }
             }
             Agendamento agendamento = new Agendamento()
             {
