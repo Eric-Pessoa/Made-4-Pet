@@ -75,6 +75,17 @@ namespace Made_4_Pet.Controllers
                 try
                 {
                     client = new FireSharp.FirebaseClient(config);
+                    FirebaseResponse clientes = client.Get("/cliente/");
+                    JObject json = JObject.Parse(clientes.Body);
+                    foreach (var e in json)
+                    {
+                        var clienteBanco = e.Value.ToObject<Cliente>();
+                        if (clienteBanco.Email == cliente.Email)
+                        {
+                            TempData["Info"] = "Já existe um cliente cadastrado com esse e-mail!";
+                            return View();
+                        }
+                    }
                     PushResponse response = client.Push("cliente/", cliente);
                     cliente.ClienteId = response.Result.name;
                     SetResponse setResponse = client.Set("cliente/" + cliente.ClienteId, cliente);

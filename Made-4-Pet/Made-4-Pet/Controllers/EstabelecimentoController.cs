@@ -45,13 +45,14 @@ namespace Made_4_Pet.Controllers
             var podeAgendar = false;
             string data = "";
             if (dataBusca != null) { data = DateTime.Parse(dataBusca).ToString(); }
+            else { data = DateTime.Today.ToString(); }
             ViewBag.data = data;
             foreach (var i in jsonEstabs)
             {
                 var e = i.Value.ToObject<Estabelecimento>();
-                if (e.EstabelecimentoId == id) 
-                { 
-                    estab = e; 
+                if (e.EstabelecimentoId == id)
+                {
+                    estab = e;
                     if (jsonAgendamentos.Count > 0)
                     {
                         foreach (var json in jsonAgendamentos)
@@ -66,10 +67,10 @@ namespace Made_4_Pet.Controllers
                             }
                         }
                     }
-                    break; 
+                    break;
                 }
             }
-            foreach(var c in estab.Categorias) { if (c == "Banho e Tosa") { podeAgendar = true; } }
+            foreach (var c in estab.Categorias) { if (c == "Banho e Tosa") { podeAgendar = true; } }
             HttpContext.Session.SetObjectAsJson("EstabSession", estab);
             ViewBag.podeAgendar = podeAgendar;
             ViewBag.agendamentos = agendamentos;
@@ -80,52 +81,6 @@ namespace Made_4_Pet.Controllers
         public IActionResult ProcuraPorServico()
         {
             return View();
-        }
-
-        public IActionResult CadastroPrestador()
-        {
-            ViewBag.categorias = new List<string>(new string[] { "Creche", "Banho e Tosa", "Hotel", "Parque", "Comércio", "Veterinária", "Hospital" });
-            return View();
-        }
-
-        [HttpPost]
-        public IActionResult CadastroPrestador(Estabelecimento estabelecimento, IList<string> categorias)
-        {
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    client = new FireSharp.FirebaseClient(config);
-                    PushResponse response = client.Push("estabelecimento/", estabelecimento);
-                    estabelecimento.EstabelecimentoId = response.Result.name;
-                    foreach (var c in categorias)
-                    {
-                        estabelecimento.Categorias.Append(c);
-                    }
-                    TimeSpan hora = TimeSpan.FromHours(1);
-                    IList<string> horarios = new List<string>();
-
-                    for (var h = estabelecimento.HoraAbertura; h < estabelecimento.HoraFechamento; h += hora)
-                    {
-                        horarios.Add(h.ToShortTimeString());
-                    }
-                    Agenda agenda = new Agenda()
-                    {
-                        EstabId = estabelecimento.EstabelecimentoId,
-                        Horarios = horarios,
-                    };
-                    estabelecimento.Agenda = agenda;
-                    client.Set("estabelecimento/" + estabelecimento.EstabelecimentoId, estabelecimento);
-                    TempData["Sucesso"] = "Cadastrado com sucesso";
-                    return RedirectToAction("index", "home");
-                } catch (Exception)
-                {
-                    return View();
-                }
-
-            }
-            ViewBag.categorias = new List<string>(new string[] { "Creche", "Banho e Tosa", "Hotel", "Parque", "Comércio", "Veterinária", "Hospital" });
-                return View();
         }
 
         [HttpPost]
@@ -151,30 +106,12 @@ namespace Made_4_Pet.Controllers
                     var filterByNeighborhood = estabelecimentos.FindAll(i => i.Endereco.Bairro.ToLower().Contains(nomeBusca.ToLower()));
                     ViewBag.Pesquisa = nomeBusca;
                     var lista = new List<Estabelecimento>();
-                    foreach(var i in filterByName)
-                    {
-                        if (!lista.Contains(i))
-                        {
-                            lista.Add(i);
-                        }
-                    }
-                    foreach (var i in filterByAddress)
-                    {
-                        if (!lista.Contains(i))
-                        {
-                            lista.Add(i);
-                        }
-                    }
-                    foreach (var i in filterByNeighborhood)
-                    {
-                        if (!lista.Contains(i))
-                        {
-                            lista.Add(i);
-                        }
-                    }
+                    foreach (var i in filterByName) { if (!lista.Contains(i)) { lista.Add(i); } }
+                    foreach (var i in filterByAddress) { if (!lista.Contains(i)) { lista.Add(i); } }
+                    foreach (var i in filterByNeighborhood) { if (!lista.Contains(i)) { lista.Add(i); } }
                     return View(lista);
                 }
-                else if(categoria != null)
+                else if (categoria != null)
                 {
                     IList<Estabelecimento> listaFiltrada = new List<Estabelecimento>();
                     switch (categoria)
@@ -184,9 +121,9 @@ namespace Made_4_Pet.Controllers
                             {
                                 foreach (var y in c.Categorias)
                                 {
-                                    if(y == "Banho e Tosa")
+                                    if (y == "Banho e Tosa")
                                     {
-                                        listaFiltrada.Add(c);
+                                        if (!listaFiltrada.Contains(c)) { listaFiltrada.Add(c); }
                                     }
                                 }
                             }
@@ -199,7 +136,7 @@ namespace Made_4_Pet.Controllers
                                 {
                                     if (y == "Veterinária" || y == "Hospital")
                                     {
-                                        listaFiltrada.Add(c);
+                                        if (!listaFiltrada.Contains(c)) { listaFiltrada.Add(c); }
                                     }
                                 }
                             }
@@ -212,7 +149,7 @@ namespace Made_4_Pet.Controllers
                                 {
                                     if (y == "Creche" || y == "Hotel")
                                     {
-                                        listaFiltrada.Add(c);
+                                        if (!listaFiltrada.Contains(c)) { listaFiltrada.Add(c); }
                                     }
                                 }
                             }
@@ -221,8 +158,70 @@ namespace Made_4_Pet.Controllers
                     }
                 }
             }
+            TempData["Info"] = "Não há nenhum estabelecimento cadastrado no sistema. Cadastre o primeiro!";
             return View();
         }
+
+        public IActionResult CadastroPrestador()
+        {
+            ViewBag.categorias = new List<string>(new string[] { "Creche", "Banho e Tosa", "Hotel", "Parque", "Comércio", "Veterinária", "Hospital" });
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult CadastroPrestador(Estabelecimento estabelecimento, IList<string> categorias)
+        {
+            try
+            {
+                ViewBag.categorias = new List<string>(new string[] { "Creche", "Banho e Tosa", "Hotel", "Parque", "Comércio", "Veterinária", "Hospital" });
+
+                if (ModelState.IsValid)
+                {
+                    client = new FireSharp.FirebaseClient(config);
+                    FirebaseResponse estabs = client.Get("/estabelecimento/");
+                    JObject json = JObject.Parse(estabs.Body);
+                    foreach (var e in json)
+                    {
+                        var estabBanco = e.Value.ToObject<Estabelecimento>();
+                        if (estabBanco.CNPJ == estabelecimento.CNPJ)
+                        {
+                            TempData["Info"] = "Já existe um estabelecimento cadastrado com esse CNPJ!";
+                            return View();
+                        }
+                    }
+                    PushResponse response = client.Push("estabelecimento/", estabelecimento);
+                    estabelecimento.EstabelecimentoId = response.Result.name;
+                    foreach (var c in categorias)
+                    {
+                        estabelecimento.Categorias.Append(c);
+                    }
+                    TimeSpan hora = TimeSpan.FromHours(1);
+                    IList<string> horarios = new List<string>();
+
+                    for (var h = estabelecimento.HoraAbertura; h < estabelecimento.HoraFechamento; h += hora)
+                    {
+                        horarios.Add(h.ToShortTimeString());
+                    }
+                    Agenda agenda = new Agenda()
+                    {
+                        EstabId = estabelecimento.EstabelecimentoId,
+                        Horarios = horarios,
+                    };
+                    estabelecimento.Agenda = agenda;
+                    client.Set("estabelecimento/" + estabelecimento.EstabelecimentoId, estabelecimento);
+                    TempData["Sucesso"] = "Cadastrado com sucesso";
+                    return RedirectToAction("index", "home");
+
+                }
+                return View();
+            }
+            catch (Exception)
+            {
+                TempData["Erro"] = "Algo deu errado! Tente novamente";
+                return View();
+            }
+        }
+
 
         [HttpPost]
         public IActionResult AgendarHorario(string horario, string data)
@@ -234,14 +233,14 @@ namespace Made_4_Pet.Controllers
                 return RedirectToAction("login", "home");
             }
             Estabelecimento estab = HttpContext.Session.GetObjectFromJson<Estabelecimento>("EstabSession");
-            if(data == null)
-            {
-                TempData["Erro"] = "Escolha uma data para agendar um horário.";
-                return RedirectToAction("Index", new { id = estab.EstabelecimentoId });
-            }
             if (DateTime.Parse(data) < DateTime.Today)
             {
                 TempData["Erro"] = "A data escolhida já passou!";
+                return RedirectToAction("index", new { id = estab.EstabelecimentoId });
+            }
+            if (DateTime.Parse(data) == DateTime.Today && TimeSpan.Parse(horario) < DateTime.Now.TimeOfDay)
+            {
+                TempData["Erro"] = "O horário escolhido já passou!";
                 return RedirectToAction("index", new { id = estab.EstabelecimentoId });
             }
             Agendamento agendamento = new Agendamento()

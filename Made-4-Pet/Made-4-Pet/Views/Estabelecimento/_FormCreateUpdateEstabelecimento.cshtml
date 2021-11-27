@@ -61,14 +61,14 @@
     <div class="col-6 horaAbertura" style="display: none">
         <label asp-for="HoraAbertura"></label>
         <div class="d-flex justify-content-between">
-            <input asp-for="HoraAbertura" class="form-control ml-3" />
+            <input asp-for="HoraAbertura" class="form-control ml-3" value="@DateTime.Today.TimeOfDay" />
             <span asp-validation-for="HoraAbertura" class="text-danger mb-3" style="text-align: center"></span>
         </div>
     </div>
     <div class="col-6 horaFechamento" style="display: none">
         <label asp-for="HoraFechamento"></label>
         <div class="d-flex justify-content-between">
-            <input asp-for="HoraFechamento" class="form-control ml-3" />
+            <input asp-for="HoraFechamento" class="form-control ml-3" value="@DateTime.Today.TimeOfDay"  />
             <span asp-validation-for="HoraFechamento" class="text-danger mb-3" style="text-align: center"></span>
         </div>
     </div>
