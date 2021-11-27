@@ -25,5 +25,13 @@
   {
     "outputFile": "wwwroot/css/Form-card.css",
     "inputFile": "wwwroot/css/Form-card.scss"
+  },
+  {
+    "outputFile": "wwwroot/css/CadastroCliente.css",
+    "inputFile": "wwwroot/css/CadastroCliente.scss"
+  },
+  {
+    "outputFile": "wwwroot/css/ProcuraPorServico.css",
+    "inputFile": "wwwroot/css/ProcuraPorServico.scss"
   }
 ]
