@@ -71,22 +71,27 @@
         else
         {
             @if (Model.Foto != null)
-            {<img src="@Model.Foto" class="col-12 imgEstab" /> }
+            {<img src="@Model.Foto" class="col-12 imgEstab"/> }
             else
-            { <img src="~/img/no-image-found.png" class="col-12 imgEstab" />}
+            { <img src="~/img/no-image-found.png" class="col-12 imgEstab"/>}
         }
     </div>
     <div class="d-flex justify-content-between h-50 col-12 mt-5" style="margin-left: 40px">
-        <div class="col-6 flexCenterColumn">
+        <div class="col-4 flexCenterColumn">
             <h5 class="textPink">Serviços oferecidos</h5>
             @foreach (var c in Model.Categorias)
             {
-                <p class="text">@c</p>
+                <h6 class="text">@c</h6>
             }
         </div>
-        <div class="col-6 flexCenterColumn">
-            <h5 class="textPink">Contato @Model.Nome</h5>
-            <h6>@Model.Telefone</h6>
+        <div class="col-4 flexCenterColumn">
+            <h5 class="textPink">Endereço</h5>
+            <h6>@Model.Endereco.Logradouro, @Model.Endereco.Numero - @Model.Endereco.Bairro - @Model.Endereco.Cidade</h6>
+        </div>
+        <div class="col-4 flexCenterColumn">
+            <h5 class="textPink">Contato</h5>
+            <h6>Telefone: @Model.Telefone</h6>
+            <h6>Email: @Model.Email</h6>
         </div>
     </div>
 </div>

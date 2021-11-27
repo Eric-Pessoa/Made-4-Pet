@@ -44,8 +44,7 @@
 .imgEstab {
   height: 40vh;
   width: 75vw;
-  object-fit: contain;
-  border-radius: 3rem; }
+  object-fit: contain; }
 
 .btnSearch {
   background-color: #dda0dd;
