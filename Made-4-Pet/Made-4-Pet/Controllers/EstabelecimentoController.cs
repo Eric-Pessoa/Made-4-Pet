@@ -89,9 +89,10 @@ namespace Made_4_Pet.Controllers
             client = new FireSharp.FirebaseClient(config);
             estabelecimentos = new List<Estabelecimento>();
             FirebaseResponse response = client.Get("/estabelecimento/");
-
-            if (response.Body != "null")
-            {
+            if(response.Body == "null") {
+                TempData["Info"] = "Não há nenhum estabelecimento cadastrado no sistema. Cadastre o primeiro!";
+                return View();
+            }
                 json = JObject.Parse(response.Body);
                 foreach (var i in json)
                 {
@@ -157,10 +158,8 @@ namespace Made_4_Pet.Controllers
                             return View(listaFiltrada);
                     }
                 }
-            }
-            TempData["Info"] = "Não há nenhum estabelecimento cadastrado no sistema. Cadastre o primeiro!";
             return View();
-        }
+            }
 
         public IActionResult CadastroPrestador()
         {
@@ -179,14 +178,17 @@ namespace Made_4_Pet.Controllers
                 {
                     client = new FireSharp.FirebaseClient(config);
                     FirebaseResponse estabs = client.Get("/estabelecimento/");
-                    JObject json = JObject.Parse(estabs.Body);
-                    foreach (var e in json)
+                    if (estabs.Body != "null")
                     {
-                        var estabBanco = e.Value.ToObject<Estabelecimento>();
-                        if (estabBanco.CNPJ == estabelecimento.CNPJ)
+                        JObject json = JObject.Parse(estabs.Body);
+                        foreach (var e in json)
                         {
-                            TempData["Info"] = "Já existe um estabelecimento cadastrado com esse CNPJ!";
-                            return View();
+                            var estabBanco = e.Value.ToObject<Estabelecimento>();
+                            if (estabBanco.CNPJ == estabelecimento.CNPJ)
+                            {
+                                TempData["Info"] = "Já existe um estabelecimento cadastrado com esse CNPJ!";
+                                return View();
+                            }
                         }
                     }
                     PushResponse response = client.Push("estabelecimento/", estabelecimento);

@@ -44,22 +44,27 @@ namespace Made_4_Pet.Controllers
         public IActionResult Login(string email, string senha)
         {
             client = new FireSharp.FirebaseClient(config);
-
             FirebaseResponse response = client.Get("/cliente/");
-            JObject json = JObject.Parse(response.Body);
-
-            foreach (var g in json)
+            if(response.Body != "null")
             {
-                var cliente = g.Value.ToObject<Cliente>();
-                if (cliente.Email == email && cliente.Senha == senha)
+                JObject json = JObject.Parse(response.Body);
+
+                foreach (var g in json)
                 {
-                    HttpContext.Session.SetObjectAsJson("UserSession", cliente);
-                    TempData["Sucesso"] = "Seja bem-vindo(a) de volta!";
-                    return RedirectToAction("Index", "home");
+                    var cliente = g.Value.ToObject<Cliente>();
+                    if (cliente.Email == email && cliente.Senha == senha)
+                    {
+                        HttpContext.Session.SetObjectAsJson("UserSession", cliente);
+                        TempData["Sucesso"] = "Seja bem-vindo(a) de volta!";
+                        return RedirectToAction("Index", "home");
+                    }
                 }
+                TempData["Erro"] = "Dados de login incorretos! Tente novamente.";
+                return View();
             }
-            TempData["Erro"] = "Dados de login incorretos! Tente novamente.";
-            return View();
+            TempData["Info"] = "Não há nenhum usuário cadastrado no sistema. Seja o primeiro!";
+            return RedirectToAction("Cadastro");
+
         }
 
         public IActionResult Cadastro()
@@ -76,14 +81,17 @@ namespace Made_4_Pet.Controllers
                 {
                     client = new FireSharp.FirebaseClient(config);
                     FirebaseResponse clientes = client.Get("/cliente/");
-                    JObject json = JObject.Parse(clientes.Body);
-                    foreach (var e in json)
+                    if (clientes.Body != "null")
                     {
-                        var clienteBanco = e.Value.ToObject<Cliente>();
-                        if (clienteBanco.Email == cliente.Email)
+                        JObject json = JObject.Parse(clientes.Body);
+                        foreach (var e in json)
                         {
-                            TempData["Info"] = "Já existe um cliente cadastrado com esse e-mail!";
-                            return View();
+                            var clienteBanco = e.Value.ToObject<Cliente>();
+                            if (clienteBanco.Email == cliente.Email)
+                            {
+                                TempData["Info"] = "Já existe um cliente cadastrado com esse e-mail!";
+                                return View();
+                            }
                         }
                     }
                     PushResponse response = client.Push("cliente/", cliente);
