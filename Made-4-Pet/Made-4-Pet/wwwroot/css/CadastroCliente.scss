@@ -1,0 +1,36 @@
+﻿@import "./FlexHelper.scss";
+@import "./Form-card.scss";
+@import "./Geral.scss";
+
+
+.container1 {
+    @include flexCenterNoAlignColumn();
+}
+
+.container2 {
+    @extend .cardStyle;
+    @include flexCenterColumn();
+    width: 70%;
+    box-shadow: 6px 6px 10px #333;
+    a {
+        &:nth-child(2) {
+            @include btnPink();
+            margin-top: 1rem;
+        }
+    }
+}
+
+.container3 {
+    @include flexCenterColumn();
+    input {
+        @include btnPinkPill();
+        margin-top: 1.5rem;
+    }
+}
+
+h1 {
+    display: flex;
+    justify-content: center;
+    margin: 3rem 0;
+}
+
