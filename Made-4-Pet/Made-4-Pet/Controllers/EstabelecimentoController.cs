@@ -240,7 +240,7 @@ namespace Made_4_Pet.Controllers
                 TempData["Erro"] = "A data escolhida já passou!";
                 return RedirectToAction("index", new { id = estab.EstabelecimentoId });
             }
-            if (data.Contains(" AM"))
+            if (horario.Contains(" AM"))
             {
                 if (DateTime.Parse(data.Replace(" AM", "")) == DateTime.Today && TimeSpan.Parse(horario.Replace(" AM", "")) < DateTime.Now.TimeOfDay)
                 {
@@ -248,7 +248,7 @@ namespace Made_4_Pet.Controllers
                     return RedirectToAction("index", new { id = estab.EstabelecimentoId });
                 }
             }
-            if (data.Contains(" PM"))
+            if (horario.Contains(" PM"))
             {
                 if (DateTime.Parse(data.Replace(" PM", "")) == DateTime.Today && TimeSpan.Parse(horario.Replace(" PM", "")) < DateTime.Now.TimeOfDay)
                 {
